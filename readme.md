@@ -6,6 +6,8 @@ https://www.hammernemt.dk/
 
 https://www.dev.hammernemt.dk/
 
+# Setup
+
 - Start MySQL server
 - Create env file (change .env.example to .env)
 - Set env DB_DATABASE, DB_USERNAME, DB_PASSWORD
