@@ -1,3 +1,11 @@
+# Live site
+
+https://www.hammernemt.dk/
+
+# Dev site 
+
+https://www.dev.hammernemt.dk/
+
 - Start MySQL server
 - Create env file (change .env.example to .env)
 - Set env DB_DATABASE, DB_USERNAME, DB_PASSWORD
