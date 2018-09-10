@@ -18,3 +18,12 @@ https://www.dev.hammernemt.dk/
 - Run `php artisan migrate`
 - Run `php artisan db:seed` to run seeders, if any.
 - Run `php artisan serve`
+
+# Contact
+
+## Discord 
+
+https://discord.gg/bdCzMuS
+
+
+
