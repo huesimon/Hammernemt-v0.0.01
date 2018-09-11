@@ -1,21 +1,12 @@
 version: 2
 jobs:
-  build:
-    docker: # run the steps with Docker 
-        - image: circleci/php:7.1-node-browsers # ...with this image as the primary container; this is where all `steps` will run
-    working_directory: ~/laravel # directory where steps will run
-    steps:
-      - checkout
-      - run: sudo composer self-update
-  test:
-    docker: # run the steps with Docker 
-      - image: circleci/php:7.1-node-browsers # ...with this image as the primary container; this is where all `steps` will run
-    working_directory: ~/laravel # directory where steps will run
-    steps: # a set of executable commands
-      - checkout # special step to check out source code to working directory
-      - run: sudo apt install -y libsqlite3-dev zlib1g-dev
-      - run: sudo composer self-update
-    
+    build:
+        docker: # run the steps with Docker 
+            - image: circleci/php:7.1-node-browsers # ...with this image as the primary container; this is where all `steps` will run
+        working_directory: ~/laravel # directory where steps will run
+        steps:
+        - checkout
+        - run: sudo composer self-update
     deploy:
         machine:
             enabled: true
