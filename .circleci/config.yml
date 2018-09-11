@@ -1,18 +1,6 @@
 version: 2
 jobs:
     build:
-    # dev_deploy:
-    #  docker: # run the steps with Docker 
-    #         - image: circleci/php:7.1-node-browsers 
-    # working_directory: ~/laravel # directory where steps will run
-    # branches:
-    #         only:
-    #             - dev
-    #  steps:
-    #     - checkout
-    #     - run: sudo composer self-update
-
-    master_deploy:
         docker: # run the steps with Docker 
             - image: circleci/php:7.1-node-browsers # ...with this image as the primary container; this is where all `steps` will run
         working_directory: ~/laravel # directory where steps will run
@@ -30,4 +18,11 @@ jobs:
             command: sudo apt-get -qq install git-ftp
         - run:
             name: Push to site
-            command: git ftp push --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/live
+            command: | 
+                if [ "$CIRCLE_BRANCH" == "master" ];
+                then
+                    git ftp push --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/live
+                elseif [ "$CIRCLE_BRANCH" == "dev" ];
+                    git ftp push --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/dev
+                fi
+            
