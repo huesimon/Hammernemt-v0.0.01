@@ -13,7 +13,7 @@ jobs: # a collection of steps
           name: Git FTP
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-                sudo apt-get update && apt-get install -y --no-install-recommends apt-utils
+                sudo apt-get update && sudo apt-get install -y --no-install-recommends apt-utils
                 sudo apt-get -qq install git-ftp
                 echo "'_$(git status -uno --porcelain | wc -l)_'"
                 sudo git status -uno --porcelain
