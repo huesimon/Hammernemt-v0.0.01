@@ -19,7 +19,9 @@ jobs:
                 if [ "$CIRCLE_BRANCH" == "master" ];
                 then
                     git ftp push --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/live
-                elseif [ "$CIRCLE_BRANCH" == "dev" ];
+                elif [ "$CIRCLE_BRANCH" == "dev" ];
                     git ftp push --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/dev
+                else
+                    echo "Not dev or live"
                 fi
             
