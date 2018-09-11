@@ -48,4 +48,10 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build_master
+      - build
+      - build_master:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
