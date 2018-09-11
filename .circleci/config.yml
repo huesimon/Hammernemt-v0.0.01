@@ -20,7 +20,7 @@ jobs: # a collection of steps
                 echo "Initiating Push site:hammernemt.dk."
                 sudo git ftp init --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/live
             else
-                echo "Not master branch so not deploying"
+                echo "Not master branch so not deploying!"
             fi
         
       - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
