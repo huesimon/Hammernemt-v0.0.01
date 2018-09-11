@@ -1,16 +1,16 @@
 version: 2
 jobs:
     build:
-    dev_deploy:
-     docker: # run the steps with Docker 
-            - image: circleci/php:7.1-node-browsers 
-    working_directory: ~/laravel # directory where steps will run
-    branches:
-            only:
-                - dev
-     steps:
-        - checkout
-        - run: sudo composer self-update
+    # dev_deploy:
+    #  docker: # run the steps with Docker 
+    #         - image: circleci/php:7.1-node-browsers 
+    # working_directory: ~/laravel # directory where steps will run
+    # branches:
+    #         only:
+    #             - dev
+    #  steps:
+    #     - checkout
+    #     - run: sudo composer self-update
 
     master_deploy:
         docker: # run the steps with Docker 
