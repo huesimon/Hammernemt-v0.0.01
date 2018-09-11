@@ -46,9 +46,8 @@ jobs:
 
 workflows:
   version: 2
-  build_master:
+  build_master_branch:
     jobs:
-      - build
       - build_master:
             filters:
                 branches:
