@@ -29,7 +29,7 @@ jobs: # a collection of steps
           key: node-v1-{{ checksum "package.json" }}
           paths:
             - node_modules
-    - deploy:
+    deploy:
         name: Deploy to host if branch is master
         command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
