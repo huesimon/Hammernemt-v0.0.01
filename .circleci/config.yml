@@ -1,6 +1,5 @@
 version: 2
 jobs:
-    build:
     master_deploy:
         docker: # run the steps with Docker 
             - image: circleci/php:7.1-node-browsers # ...with this image as the primary container; this is where all `steps` will run
