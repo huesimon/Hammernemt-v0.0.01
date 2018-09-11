@@ -19,10 +19,12 @@ jobs:
                 if [ "$CIRCLE_BRANCH" == "master" ];
                 then
                     git ftp push --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/live
+                    echo "Pushing to live"
                 fi
                 if [ "$CIRCLE_BRANCH" == "dev" ];
                 then
                     git ftp push --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/dev
+                    echo "Pushing to dev"
                 fi
                 echo $CIRCLE_BRANCH
                 
