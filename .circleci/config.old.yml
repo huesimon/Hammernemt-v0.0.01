@@ -1,0 +1,34 @@
+version: 2
+jobs:
+    build:
+        docker: # run the steps with Docker 
+            - image: circleci/php:7.1-node-browsers # ...with this image as the primary container; this is where all `steps` will run
+        working_directory: ~/laravel # directory where steps will run
+        steps:
+        - checkout
+        - run: sudo composer self-update
+        - run:
+            name: Sudo update
+            command: sudo apt-get update && sudo apt-get install -y --no-install-recommends apt-utils
+        - run:
+            name: Install git ftp
+            command: sudo apt-get -qq install git-ftp
+        - run:
+            name: Push to site
+            command: | 
+                if [ "$CIRCLE_BRANCH" == "master" ];
+                then
+                    git ftp push --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/live
+                    echo "Pushing to live"
+                fi
+                if [ "$CIRCLE_BRANCH" == "dev" ];
+                then
+                    git ftp push --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/dev
+                    echo "Pushing to dev"
+                fi
+                echo $CIRCLE_BRANCH
+                
+        - run: 
+            name: DONE!
+            command: echo DONE
+            
