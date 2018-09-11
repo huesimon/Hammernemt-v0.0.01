@@ -49,6 +49,6 @@ workflows:
   build_master:
     jobs:
       - build_master
-          filters:
-            branches:
-              only: master
+            filters:
+                branches:
+                only: master
