@@ -2,9 +2,13 @@
 
 https://www.hammernemt.dk/
 
+live [![CircleCI](https://circleci.com/gh/huesimon/Hammernemt/tree/master.svg?style=svg)](https://circleci.com/gh/huesimon/Hammernemt/tree/master)
+
 # Dev site 
 
 https://www.dev.hammernemt.dk/
+
+dev [![CircleCI](https://circleci.com/gh/huesimon/Hammernemt/tree/dev.svg?style=svg)](https://circleci.com/gh/huesimon/Hammernemt/tree/dev)
 
 # Setup
 
@@ -19,6 +23,7 @@ https://www.dev.hammernemt.dk/
 - Run `php artisan db:seed` to run seeders, if any.
 - Run `php artisan serve`
 
+
 # Contact
 
 ## Discord 
@@ -26,4 +31,3 @@ https://www.dev.hammernemt.dk/
 https://discord.gg/bdCzMuS
 
 
-DEV TESTING XD
