@@ -21,7 +21,7 @@ jobs:
                     git ftp push --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/live
                 elif [ "$CIRCLE_BRANCH" == "dev" ];
                     git ftp push --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/dev
-                else
+                else;
                     echo "Not dev or live"
                 fi
             
