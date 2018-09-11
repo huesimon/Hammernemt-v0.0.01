@@ -1,11 +1,13 @@
 version: 2
 jobs:
   build:
-    
-    build_master: # runs not using Workflows must have a `build` job as entry point
-    branches:
-      only:
-        - master
+    docker: # run the steps with Docker 
+        - image: circleci/php:7.1-node-browsers # ...with this image as the primary container; this is where all `steps` will run
+    working_directory: ~/laravel # directory where steps will run
+    steps:
+      - checkout
+      -- run: sudo composer self-update
+  test:
     docker: # run the steps with Docker 
       - image: circleci/php:7.1-node-browsers # ...with this image as the primary container; this is where all `steps` will run
     working_directory: ~/laravel # directory where steps will run
@@ -13,40 +15,28 @@ jobs:
       - checkout # special step to check out source code to working directory
       - run: sudo apt install -y libsqlite3-dev zlib1g-dev
       - run: sudo composer self-update
-      - run:
-          name: Git FTP
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-                sudo apt-get update && sudo apt-get install -y --no-install-recommends apt-utils
-                sudo apt-get -qq install git-ftp
-                echo "'_$(git status -uno --porcelain | wc -l)_'"
-                sudo git status -uno --porcelain
-                echo "Initiating Push site:hammernemt.dk."
-                sudo git ftp push --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/live
-            else
-                echo "Not master branch so not deploying!"
-            fi
-  build_dev: # runs not using Workflows must have a `build` job as entry point
-  branches:
-      only:
-        - dev
-    docker: # run the steps with Docker 
-      - image: circleci/php:7.1-node-browsers # ...with this image as the primary container; this is where all `steps` will run
+ deploy:
+    machine:
+        enabled: true
     working_directory: ~/laravel # directory where steps will run
-    steps: # a set of executable commands
-      - checkout # special step to check out source code to working directory
-      - run: sudo apt install -y libsqlite3-dev zlib1g-dev
-      - run: sudo composer self-update
-      - run:
-          name: Git FTP
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-                sudo apt-get update && sudo apt-get install -y --no-install-recommends apt-utils
-                sudo apt-get -qq install git-ftp
-                echo "'_$(git status -uno --porcelain | wc -l)_'"
-                sudo git status -uno --porcelain
-                echo "Initiating Push site:hammernemt.dk."
-                sudo git ftp push --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/dev
-            else
-                echo "Not master branch so not deploying!"
-            fi
+    steps:
+    - run:
+        name: Sudo update
+        command: sudo apt-get update && sudo apt-get install -y --no-install-recommends apt-utils
+    - run:
+        name: Install git ftp
+        command: sudo apt-get -qq install git-ftp
+    -run :
+        name: Push to site
+        command: git ftp push --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/live
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
