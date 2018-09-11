@@ -18,7 +18,7 @@ jobs: # a collection of steps
                 echo "'_$(git status -uno --porcelain | wc -l)_'"
                 sudo git status -uno --porcelain
                 echo "Initiating Push site:hammernemt.dk."
-                sudo git ftp init --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://huebanden.dk/hammernemt.dk/live
+                sudo git ftp init --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/live
             else
                 echo "Not master branch so not deploying"
             fi
