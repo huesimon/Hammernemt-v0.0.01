@@ -4,9 +4,6 @@ jobs:
         docker: # run the steps with Docker 
             - image: circleci/php:7.1-node-browsers # ...with this image as the primary container; this is where all `steps` will run
         working_directory: ~/laravel # directory where steps will run
-        branches:
-            only:
-                - master
         steps:
         - checkout
         - run: sudo composer self-update
