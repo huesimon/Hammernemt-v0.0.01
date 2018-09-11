@@ -10,6 +10,20 @@ jobs: # a collection of steps
       - run: sudo apt install -y libsqlite3-dev zlib1g-dev
       - run: sudo docker-php-ext-install zip
       - run: sudo composer self-update
+      - run :
+        name: Deploy to host if branch is master
+        command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+                apt-get update
+                apt-get -qq install git-ftp
+                echo "'_$(git status -uno --porcelain | wc -l)_'"
+                git status -uno --porcelain
+                echo "Initiating Push site:labs.kosmik.id."
+                git ftp init --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ${FTP_LIVE_LOCATION}
+            else
+                echo "Not master branch so not deploying"
+            fi
+        
       - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
           keys:
             - composer-v1-{{ checksum "composer.lock" }}
@@ -29,21 +43,3 @@ jobs: # a collection of steps
           key: node-v1-{{ checksum "package.json" }}
           paths:
             - node_modules
-    deploy:
-        name: Deploy to host if branch is master
-        command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-                apt-get update
-                apt-get -qq install git-ftp
-                echo "'_$(git status -uno --porcelain | wc -l)_'"
-                git status -uno --porcelain
-                echo "Initiating Push site:labs.kosmik.id."
-                git ftp init --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ${FTP_LIVE_LOCATION}
-            else
-                echo "Not master branch so not deploying"
-            fi
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - deploy
