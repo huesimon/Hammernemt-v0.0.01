@@ -11,8 +11,8 @@ jobs: # a collection of steps
       - run: sudo docker-php-ext-install zip
       - run: sudo composer self-update
       - run:
-        name: Deploy to host if branch is master
-        command: |
+          name: Git FTP
+          command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
                 apt-get update
                 apt-get -qq install git-ftp
