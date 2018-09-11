@@ -44,7 +44,7 @@ jobs: # a collection of steps
             - node_modules
 workflows:
   version: 2
-  build_and_test:
+  build:
     jobs:
     - build
     filters:

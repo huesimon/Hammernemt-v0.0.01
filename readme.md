@@ -18,4 +18,10 @@ https://www.dev.hammernemt.dk/
 - Run `php artisan migrate`
 - Run `php artisan db:seed` to run seeders, if any.
 - Run `php artisan serve`
-test
+
+
+## Status 	
+
+live [![CircleCI](https://circleci.com/gh/huesimon/Hammernemt/tree/master.svg?style=svg)](https://circleci.com/gh/huesimon/Hammernemt/tree/master)
+
+dev [![CircleCI](https://circleci.com/gh/huesimon/Hammernemt/tree/dev.svg?style=svg)](https://circleci.com/gh/huesimon/Hammernemt/tree/dev)
