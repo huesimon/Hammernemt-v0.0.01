@@ -22,7 +22,6 @@ jobs: # a collection of steps
             else
                 echo "Not master branch so not deploying!"
             fi
-jobs: # a collection of steps
   build_dev: # runs not using Workflows must have a `build` job as entry point
     docker: # run the steps with Docker 
       - image: circleci/php:7.1-node-browsers # ...with this image as the primary container; this is where all `steps` will run
