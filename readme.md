@@ -26,4 +26,4 @@ https://www.dev.hammernemt.dk/
 https://discord.gg/bdCzMuS
 
 
-pushing to dev test
+DEV TESTING XD
