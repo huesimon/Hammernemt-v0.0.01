@@ -10,7 +10,7 @@ jobs: # a collection of steps
       - run: sudo apt install -y libsqlite3-dev zlib1g-dev
       - run: sudo docker-php-ext-install zip
       - run: sudo composer self-update
-      - run :
+      - run:
         name: Deploy to host if branch is master
         command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
