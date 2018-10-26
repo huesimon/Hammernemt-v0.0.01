@@ -15,10 +15,15 @@ dev [![CircleCI](https://circleci.com/gh/huesimon/Hammernemt/tree/dev.svg?style=
 ## Database
 
 MySQL Workbench https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.13-winx64.msi
+
 Need to get added to the Whitelist before connecting
+
 Hostname: hammernemt.dk
+
 Port: 3306
+
 Username: PREFIX_username
+
 Default Schema: PREFIX_schemaName
 
 ## Laravel
