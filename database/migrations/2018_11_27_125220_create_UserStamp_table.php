@@ -14,8 +14,8 @@ class CreateUserStampTable extends Migration
     {
         Schema::create('UserStamp', function (Blueprint $table) {
 			$table->increments('id');
-			$table->date('startTime');
-			$table->date('endTime');
+			$table->datetime('startTime');
+			$table->datetime('endTime');
 			$table->integer('pause');
 			$table->boolean('approved');
             $table->timestamps();
