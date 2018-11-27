@@ -21,6 +21,7 @@ class CreateShiftsTable extends Migration
             $table->date('endTime');
             $table->integer('FK_User');
             $table->integer('FK_CompanyDepartment');
+            $table->timestamps();
         });
     }
 
