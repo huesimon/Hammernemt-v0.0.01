@@ -11,14 +11,16 @@ class ShiftPastSeeder extends Seeder
      */
     public function run()
     {
-		$today = Carbon::now();
+		
 		for ($i=1; $i <= 100; $i++) { 
-			$shiftDay = $today->addDays(random_int(-30, -1));
+			$random = random_int(1,30);
+			$shiftDay = Carbon::now()->addDays(-$random);
+			$endtime = Carbon::now()->addDays($random)->addHours(3);
 			DB::table('Shifts')->insert([
 				'date' => $shiftDay,
 				'tradeable' => 0,
 				'startTime' => $shiftDay,
-				'endTime' => $shiftDay->addHours(3),
+				'endTime' => $endtime,
 				'FK_User' => random_int(1,40),
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now(),
