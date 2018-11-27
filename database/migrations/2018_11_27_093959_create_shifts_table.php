@@ -27,7 +27,7 @@ class CreateShiftsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
+     *c
      * @return void
      */
     public function down()
