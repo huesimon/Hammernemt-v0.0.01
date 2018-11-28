@@ -13,9 +13,16 @@ class UserStampTableSeeder extends Seeder
     {
 		$today = Carbon::now();
 		//Needs fix, database is DATE... format as time
-		$startTime = $today->format('H:mm:ss');
-		$endTime = $today->addHours(3)->format('H:mm:ss');
-		for ($i=1; $i <= 90; $i++) { 
+		//$startTime = $today->format('H:mm:ss');
+		//$endTime = $today->addHours(3)->format('H:mm:ss');
+
+
+        for ($i=1; $i <= 90; $i++) {
+            $random = random_int(-30,-1);
+            $random_start = random_int(-10,10);
+            $random_end = random_int(-10,10);
+            $startTime = Carbon::now()->addDays($random)->addMinutes($random_start);
+            $endTime = Carbon::now()->addDays($random)->addHours(3)->addMinutes($random_end);
 			DB::table('UserStamp')->insert([
 				'startTime' => $startTime,
 				'endTime' => $endTime,
