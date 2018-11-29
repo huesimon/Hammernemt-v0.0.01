@@ -13,6 +13,8 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/User', 'UserController@index');
+Route::get('/user', 'UserController@index');
 
-Route::get('/Admin', 'AdminController@index');
+Route::get('/admin', 'AdminController@index');
+
+Route::get('/calendar', 'CalendarController@index');
