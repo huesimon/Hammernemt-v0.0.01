@@ -21,7 +21,4 @@ Route::get('/calendar', 'CalendarController@index');
 
 Route::get('/shift', 'ShiftController@index');
 
-Route::get('/shift/all', function () {
-	$shifts = Shift::all();
-    return $shifts;
-});
+Route::get('/shift/all', 'ShiftController@all');

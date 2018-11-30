@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Shift;
 
 class ShiftController extends Controller
 {
@@ -20,8 +21,8 @@ class ShiftController extends Controller
 	}
 	
 	public function all () {
-		$tasks = Task::all();
-    	return view('tasks.index', compact('tasks'));
+		$shifts = Shift::all();
+   		return $shifts;
 	}
 
     /**
