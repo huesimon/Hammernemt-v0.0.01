@@ -17,7 +17,12 @@ class ShiftController extends Controller
     public function index()
     {
         //
-    }
+	}
+	
+	public function all () {
+		$tasks = Task::all();
+    	return view('tasks.index', compact('tasks'));
+	}
 
     /**
      * Show the form for creating a new resource.
