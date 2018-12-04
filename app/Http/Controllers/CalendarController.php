@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Shift;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +16,16 @@ class CalendarController extends Controller
      */
     public function index()
     {
-        return view('calendar.index');
+		$shifts = []; 
+
+		foreach(Shift::all() as $shift) {
+			$shifts [] = [
+				'title' 		=> $shift->FK_User,
+				'allDay' 		=> true,
+				'start' 		=> '2018-12-05'
+			];
+		}
+        return view('calendar.index', compact('shifts'));
     }
 
     /**

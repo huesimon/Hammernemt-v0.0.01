@@ -10,14 +10,15 @@ use App\Shift;
 | and give it the controller to call when that URI is requested.
 |
 */
-
+// Route formatting
+//Route::get('/test/{squirrel}', ['uses' =>'SomeController@doSomething', 'as'=>'routeName']);
 Route::get('/', 'HomeController@index');
 
 Route::get('/user', 'UserController@index');
 
 Route::get('/admin', 'AdminController@index');
 
-Route::get('/calendar', 'CalendarController@index');
+Route::get('/calendar', ['uses' =>'CalendarController@index', 'as'=>'calendar']);
 
 Route::get('/shift', 'ShiftController@index');
 
