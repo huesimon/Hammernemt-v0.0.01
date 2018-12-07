@@ -55,7 +55,7 @@ class ShiftController extends Controller
     public function show($id)
     {
 		$shift = Shift::find($id);
-		return $shift;
+		return $shift->getStartDateTimeUTC();
     }
 
     /**
