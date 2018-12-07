@@ -36,7 +36,6 @@
         </style>
     </head>
     <body>
-		{{dd('test')}}
         <div class="container">
             <div class="content">
 			<div class="title">{{env('APP_ENV')}} Laravel 5</div>

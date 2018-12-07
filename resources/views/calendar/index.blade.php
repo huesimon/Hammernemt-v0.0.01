@@ -13,22 +13,21 @@
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css"media='print' />
 	
 	<script>
-	  $(document).ready(function() {
-$('#calendar').fullCalendar({
-	events: {
-    url: '/shifts/all',
-    type: 'POST',
-    data: {
-      custom_param1: 'something',
-      custom_param2: 'somethingelse'
-    },
-    error: function() {
-      alert('there was an error while fetching events!');
-    },
-    color: 'yellow',   // a non-ajax option
-    textColor: 'black' // a non-ajax option
-  }
+	$(document).ready(function() {
+		$('#calendar').fullCalendar({
+			events: [
+		@foreach($shifts as $shift)
+		
+		{
+		title  : 'insert title'
+		start  : '2018-12-12'
+		},
+
+		@endforeach
+		]
+	});
 });
+
 
 
 		</script>

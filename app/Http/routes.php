@@ -23,3 +23,5 @@ Route::get('/calendar', ['uses' =>'CalendarController@index', 'as'=>'calendar'])
 Route::get('/shift', 'ShiftController@index');
 
 Route::get('/shift/all', 'ShiftController@all');
+
+Route::get('/shift/{id}', 'ShiftController@show');
