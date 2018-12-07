@@ -56,7 +56,7 @@ class CalendarController extends Controller
 					// Add color and link on event
 					[
 						'color' => '#ff0000',
-						'url' => '/shift/' . $shift->id,
+						'url' => '/shift/release/' . $shift->id,
 					]
 				);
 			}
