@@ -18,11 +18,11 @@ class CalendarController extends Controller
 	public function index()
             {
                 $events = [];
-                $shifts = Shift::find([16,17]);
+                $shifts = Shift::all();
                 if($shifts->count()) {
                     foreach ($shifts as $shift) {
                         $events[] = Calendar::event(
-                        	'title',
+                        	$shift->id . '',
                             false,
                             new \DateTime($shift->startTime),
                             new \DateTime($shift->endTime),
