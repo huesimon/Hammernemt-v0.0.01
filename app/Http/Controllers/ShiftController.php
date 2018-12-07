@@ -25,6 +25,17 @@ class ShiftController extends Controller
    		return $shifts;
 	}
 
+	public function returnJSON () {
+		$shift = Shift::find(16);
+		return response()->json([
+			'id' 		=> $shift->id,
+			'title' 	=> 'Change title in shift controller',
+			'start' 	=> $shift->getStartDateTimeUTC(),
+			'end' 		=> $shift->getEndDateTimeUTC()
+			]);
+
+	}
+
     /**
      * Show the form for creating a new resource.
      *
@@ -55,7 +66,7 @@ class ShiftController extends Controller
     public function show($id)
     {
 		$shift = Shift::find($id);
-		return $shift->getStartDateTimeUTC();
+		return $shift;
     }
 
     /**

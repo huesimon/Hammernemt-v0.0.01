@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Shift;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 
 class CalendarController extends Controller
 {
@@ -14,19 +15,31 @@ class CalendarController extends Controller
      *
      * @return Response
      */
-    public function index()
-    {
-		$shifts = []; 
+	public function index()
+            {
+                $events = [];
+                $shifts = Shift::find([16,17]);
+                if($shifts->count()) {
+                    foreach ($shifts as $shift) {
+                        $events[] = Calendar::event(
+                        	'title',
+                            false,
+                            new \DateTime($shift->startTime),
+                            new \DateTime($shift->endTime),
+                            null,
+                            // Add color and link on event
+                         [
+                             'color' => '#ff0000',
+                             'url' => 'pass here url and any route',
+                         ]
+                        );
+                    }
+                }
+                $calendar = Calendar::addEvents($events);
+                return view('calendar.index', compact('calendar'));
+            }
 
-		foreach(Shift::all() as $shift) {
-			$shifts [] = [
-				'title' 		=> $shift->FK_User,
-				'allDay' 		=> true,
-				'start' 		=> '2018-12-05'
-			];
-		}
-        return view('calendar.index', compact('shifts'));
-    }
+
 
     /**
      * Show the form for creating a new resource.

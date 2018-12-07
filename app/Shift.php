@@ -8,10 +8,13 @@ use Carbon\Carbon;
 class Shift extends Model
 {
 	public function getStartDateTimeUTC () {
-		$startTime = Carbon::parse($this->startTime)->format('Y-m-d\TH:i:s.uP T');
+		// //the formatting should return utc
+		// $startTime = Carbon::parse($this->startTime)->format('Y-m-d\TH:i:s.uP T');
+		$startTime = Carbon::createFromFormat('Y-m-d H:i:s', $this->startTime, 'Europe/Copenhagen');
 		return $startTime;
 	}
 	public function getEndDateTimeUTC () {
+		//the formatting should return utc
 		$endTime = Carbon::parse($this->endTime)->format('Y-m-d\TH:i:s.uP T');
 		return $endTime;
 	}
