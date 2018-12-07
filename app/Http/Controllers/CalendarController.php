@@ -24,8 +24,8 @@ class CalendarController extends Controller
                         $events[] = Calendar::event(
                         	$shift->id . '',
                             false,
-                            new \DateTime($shift->startTime),
-                            new \DateTime($shift->endTime),
+                            new \DateTime($shift->start_time),
+                            new \DateTime($shift->end_time),
                             null,
                             // Add color and link on event
                          [
