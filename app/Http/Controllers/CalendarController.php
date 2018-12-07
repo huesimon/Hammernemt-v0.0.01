@@ -3,27 +3,43 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Shift;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Shift;
+use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 
-class ShiftController extends Controller
+class CalendarController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index()
-    {
-        //
-	}
-	
-	public function all () {
-		$shifts = Shift::all();
-   		return $shifts;
-	}
+	public function index()
+            {
+                $events = [];
+                $shifts = Shift::all();
+                if($shifts->count()) {
+                    foreach ($shifts as $shift) {
+                        $events[] = Calendar::event(
+                        	$shift->id . '',
+                            false,
+                            new \DateTime($shift->startTime),
+                            new \DateTime($shift->endTime),
+                            null,
+                            // Add color and link on event
+                         [
+                             'color' => '#ff0000',
+                             'url' => 'pass here url and any route',
+                         ]
+                        );
+                    }
+                }
+                $calendar = Calendar::addEvents($events);
+                return view('calendar.index', compact('calendar'));
+            }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -54,8 +70,7 @@ class ShiftController extends Controller
      */
     public function show($id)
     {
-		$shift = Shift::find($id);
-		return $shift;
+        //
     }
 
     /**
