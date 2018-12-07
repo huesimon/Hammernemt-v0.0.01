@@ -56,6 +56,12 @@ class ShiftController extends Controller
     {
 		$shift = Shift::find($id);
 		return $shift;
+	}
+	
+	public function release($id)
+    {
+		$shift = Shift::find($id);
+		return view('shift.release', compact('shift'));
     }
 
     /**
