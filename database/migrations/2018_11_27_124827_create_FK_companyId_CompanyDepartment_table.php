@@ -12,9 +12,9 @@ class CreateFKCompanyIdCompanyDepartmentTable extends Migration
      */
     public function up()
     {
-		Schema::table('CompanyDepartments', function (Blueprint $table) {
+		Schema::table('companydepartments', function (Blueprint $table) {
 			$table->unsignedInteger('company_id');
-			$table->foreign('company_id')->references('id')->on('Companies');
+			$table->foreign('company_id')->references('id')->on('companies');
 		});
     }
 

@@ -2,8 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
-
-class CompaniesSeeder extends Seeder
+class CompanyDepartmentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,10 +12,8 @@ class CompaniesSeeder extends Seeder
     public function run()
     {
 		for ($i=1; $i <= 3; $i++) { 
-			DB::table('companies')->insert([
-			'name' => 'Virksomhed' . $i,
-			'cvr' => random_int(10000000,99999999),
-			'active' => 1,
+			DB::table('companydepartments')->insert([
+			'company_id' => rand(1,3),
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now(),
 		]);

@@ -12,9 +12,9 @@ class CreateFKDepartmentUserTable extends Migration
      */
     public function up()
     {
-		Schema::table('Users', function (Blueprint $table) {
+		Schema::table('users', function (Blueprint $table) {
 			$table->unsignedInteger('department_id');
-			$table->foreign('department_id')->references('id')->on('CompanyDepartment');
+			$table->foreign('department_id')->references('id')->on('companydepartments')->nullable();
 		});
     }
 

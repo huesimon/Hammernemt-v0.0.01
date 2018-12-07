@@ -12,7 +12,7 @@ class CreateShiftsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Shifts', function (Blueprint $table) {
+        Schema::create('shifts', function (Blueprint $table) {
             $table->increments('id');
             $table->datetime('date');
             $table->integer('break');

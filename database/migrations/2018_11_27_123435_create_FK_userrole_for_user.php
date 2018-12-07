@@ -12,9 +12,9 @@ class CreateFKUserroleForUser extends Migration
      */
     public function up()
     {
-		Schema::table('Users', function (Blueprint $table) {
+		Schema::table('users', function (Blueprint $table) {
 			$table->unsignedInteger('user_role_id');
-			$table->foreign('user_role_id')->references('id')->on('UserRole');
+			$table->foreign('user_role_id')->references('id')->on('userrole');
 		});
 			
     }

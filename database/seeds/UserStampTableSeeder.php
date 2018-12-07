@@ -23,7 +23,7 @@ class UserStampTableSeeder extends Seeder
             $random_end = random_int(-10,10);
             $startTime = Carbon::now()->addDays($random)->addMinutes($random_start);
             $endTime = Carbon::now()->addDays($random)->addHours(3)->addMinutes($random_end);
-			DB::table('UserStamp')->insert([
+			DB::table('userstamp')->insert([
 				'start_time' => $startTime,
 				'end_time' => $endTime,
 				'pause' => 15,
