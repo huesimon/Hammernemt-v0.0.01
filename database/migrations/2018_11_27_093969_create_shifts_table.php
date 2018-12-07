@@ -12,15 +12,15 @@ class CreateShiftsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shifts', function (Blueprint $table) {
+        Schema::create('Shifts', function (Blueprint $table) {
             $table->increments('id');
             $table->datetime('date');
             $table->integer('break');
             $table->boolean('tradeable');
-            $table->datetime('startTime');
-            $table->datetime('endTime');
-            $table->integer('FK_User');
-            $table->integer('FK_CompanyDepartment');
+            $table->datetime('start_time');
+            $table->datetime('end_time');
+            $table->integer('user_id');
+            $table->integer('company_department_id');
             $table->timestamps();
         });
     }

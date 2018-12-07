@@ -30,7 +30,7 @@ class CalendarController extends Controller
                             // Add color and link on event
                          [
                              'color' => '#ff0000',
-                             'url' => 'pass here url and any route',
+                             'url' => '/shift/' . $shift->id,
                          ]
                         );
                     }
@@ -39,6 +39,29 @@ class CalendarController extends Controller
                 return view('calendar.index', compact('calendar'));
             }
 
+			public function myCalendar($userid)
+            {
+                $events = [];
+                $shifts = Shift::myShift($userid)->get();
+                if($shifts->count()) {
+                    foreach ($shifts as $shift) {
+                        $events[] = Calendar::event(
+                        	$shift->id . '',
+                            false,
+                            new \DateTime($shift->startTime),
+                            new \DateTime($shift->endTime),
+                            null,
+                            // Add color and link on event
+                         [
+                             'color' => '#ff0000',
+                             'url' => '/shift/' . $shift->id,
+                         ]
+                        );
+                    }
+                }
+                $calendar = Calendar::addEvents($events);
+                return view('calendar.index', compact('calendar'));
+            }
 
 
     /**

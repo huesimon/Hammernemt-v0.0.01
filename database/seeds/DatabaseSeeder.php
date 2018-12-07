@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserRoleSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(ShiftSeeder::class);
-        $this->call(ShiftPastSeeder::class);
+        //$this->call(ShiftPastSeeder::class);
         $this->call(UserStampTableSeeder::class);
 
         Model::reguard();

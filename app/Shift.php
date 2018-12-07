@@ -26,4 +26,8 @@ class Shift extends Model
 		$endTime = Carbon::parse($this->endTime);
 		return $endTime;
 	}
+
+	public function scopeMyShift($query, $userId = null) {
+		return $query->where('FK_user', '=', $userId);
+	}
 }

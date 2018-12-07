@@ -20,6 +20,8 @@ Route::get('/admin', 'AdminController@index');
 
 Route::get('/calendar', ['uses' =>'CalendarController@index', 'as'=>'calendar']);
 
+Route::get('/calendar/mine/{userid}', ['uses' =>'CalendarController@myCalendar', 'as'=>'calendar']);
+
 Route::get('/shift', 'ShiftController@index');
 
 Route::get('/shift/all', 'ShiftController@all');

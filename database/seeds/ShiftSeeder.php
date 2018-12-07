@@ -18,9 +18,9 @@ class ShiftSeeder extends Seeder
             DB::table('Shifts')->insert([
                 'date' => $shiftDay,
                 'tradeable' => random_int(0,1),
-                'startTime' => $shiftDay,
-                'endTime' => $endtime,
-                'FK_User' => random_int(1,40),
+                'start_time' => $shiftDay,
+                'end_time' => $endtime,
+                'user_id' => random_int(1,40),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);

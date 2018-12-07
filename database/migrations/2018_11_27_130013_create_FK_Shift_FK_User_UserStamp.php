@@ -13,10 +13,10 @@ class CreateFKShiftFKUserUserStamp extends Migration
     public function up()
     {
         Schema::table('UserStamp', function (Blueprint $table) {
-			$table->unsignedInteger('ShiftId');
-			$table->unsignedInteger('UserId');
-			$table->foreign('ShiftId')->references('id')->on('Shifts');
-			$table->foreign('UserId')->references('id')->on('Users');
+			$table->unsignedInteger('shift_id');
+			$table->unsignedInteger('user_id');
+			$table->foreign('shift_id')->references('id')->on('Shifts');
+			$table->foreign('user_id')->references('id')->on('Users');
 		});
     }
 
