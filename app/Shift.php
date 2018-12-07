@@ -28,6 +28,6 @@ class Shift extends Model
 	}
 
 	public function scopeMyShift($query, $userId = null) {
-		return $query->where('FK_user', '=', $userId);
+		return $query->where('user_id', '=', $userId);
 	}
 }
