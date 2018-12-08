@@ -16,7 +16,7 @@ class CreateUserStampTable extends Migration
 			$table->increments('id');
 			$table->datetime('start_time');
 			$table->datetime('end_time');
-			$table->integer('pause');
+			$table->integer('pause')->nullable();
 			$table->boolean('approved');
             $table->timestamps();
         });

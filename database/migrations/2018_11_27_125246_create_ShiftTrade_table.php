@@ -16,9 +16,9 @@ class CreateShiftTradeTable extends Migration
 			$table->increments('id');
 			$table->integer('shift_id');
 			$table->integer('original_owner_id');
-			$table->integer('new_owner_id');
+			$table->integer('new_owner_id')->nullable();
 			$table->boolean('approved');
-			$table->text('comment');
+			$table->text('comment')->nullable();
 			$table->boolean('active');
             $table->timestamps();
         });
