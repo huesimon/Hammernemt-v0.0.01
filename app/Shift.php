@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\User;
 
 class Shift extends Model
 {
@@ -48,5 +49,10 @@ class Shift extends Model
 		$startTime = Carbon::parse($this->start_time)->format('H:i:s');
 		$endTime = Carbon::parse($this->end_time)->format('H:i:s');
 		return 'Dato: ' . $date . ' Tidspunkt: '. $startTime . ' - ' . $endTime;
+	}
+
+	public function getUser() {
+		$user = User::find($this->user_id);
+		return $user;
 	}
 }

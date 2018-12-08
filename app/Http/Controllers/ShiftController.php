@@ -72,10 +72,15 @@ class ShiftController extends Controller
      */
 	public function releaseShift(Request $request)
     {
+		$shiftId = $request->get('shift_id');
+		$userId = $request->get('user_id');
+		$comment = $request->get('comment');
 		$shiftTrade = new ShiftTrade;
-		$shiftTrade->original_owner_id = 2;
-		$shiftTrade->new_owner_id = 4;
+		$shiftTrade->shift_id = $shiftId;
+		$shiftTrade->original_owner_id = $userId;
+		$shiftTrade->new_owner_id = null;
 		$shiftTrade->approved = 0;
+		$shiftTrade->comment = $comment;
 		$shiftTrade->active = 1;
 		$shiftTrade->save();
 
