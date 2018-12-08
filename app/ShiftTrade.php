@@ -10,7 +10,13 @@ class ShiftTrade extends Model
 		return $query->where('active', '=', 1);
 	}
 
-	public function scopeTradeable($query) {
-		return $query->where('tradeable', '=', 1);
+	public function scopeApproved($query) {
+		return $query->where('approved', '=', 1);
+	}
+	public function scopeNotApproved($query) {
+		return $query->where('approved', '=', 0);
+	}
+	public function scopeNoNewOwner($query) {
+		return $query->where('new_owner_id', '=', null);
 	}
 }

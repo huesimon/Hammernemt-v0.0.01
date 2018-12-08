@@ -29,4 +29,7 @@ Route::get('/shift/all', 'ShiftController@all');
 Route::get('/shift/{id}', 'ShiftController@show');
 
 Route::get('/shift/release/{id}', 'ShiftController@releaseInfo');
+
 Route::post('/shift/release/', 'ShiftController@releaseShift');
+
+Route::get('/tradelist', 'ShiftController@tradeList');

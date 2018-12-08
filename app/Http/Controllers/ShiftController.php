@@ -88,7 +88,10 @@ class ShiftController extends Controller
 	}
 	
 	public function tradeList() {
-		$tradeableShifts = "";
+		//return a view with all tradeable shifts
+		//All shifts without a owner are tradeable right?
+		$tradeableShfits = ShiftTrade::noNewOwner()->active()->get();
+   		return $tradeableShfits;
 	}
 
     /**
