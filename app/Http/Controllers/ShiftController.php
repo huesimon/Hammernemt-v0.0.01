@@ -85,7 +85,11 @@ class ShiftController extends Controller
 		$shiftTrade->save();
 
 		return $shiftTrade;
-    }
+	}
+	
+	public function tradeList() {
+		$tradeableShifts = "";
+	}
 
     /**
      * Show the form for editing the specified resource.

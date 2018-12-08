@@ -6,7 +6,7 @@
 <div class="form-group">
 	{!! Form::label($shift->id, null, ['class' => 'form-control']) !!}
 	{!! Form::hidden('shift_id', $shift->id) !!}
-	{!! Form::hidden('user_id', $shift->getUser()) !!}
+	{!! Form::hidden('user_id', $shift->getUser()->id) !!}
 	{!! Form::label($shift->getDate(), null, ['class' => 'form-control'])!!}
 	{!! Form::label('Start: ' . $shift->getStartTime() . ' Slut: ' . $shift->getEndTime(), null, ['class' => 'form-control']) !!}
 </div>
