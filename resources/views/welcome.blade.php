@@ -38,8 +38,23 @@
     <body>
         <div class="container">
             <div class="content">
-			<div class="title">{{env('APP_ENV')}} HAMMERNEMT</div>
-            </div>
+				<div class="title">{{env('APP_ENV')}} HAMMERNEMT</div>
+			</div>
+			<div class="content">
+				<h1>
+					<a href="{{route('calendar')}}">Stempling</a>
+				</h1>
+				<h1>
+					<a href="{{route('calendar')}}">Vagtplan</a>
+				</h1>
+				<h1>
+					<a href="{{route('tradeList')}}">Ledige vagter</a>
+				</h1>
+				<h1>
+					<a href="{{route('calendar')}}">Mine timer</a>
+				</h1>
+			</div>
+
         </div>
     </body>
 </html>
