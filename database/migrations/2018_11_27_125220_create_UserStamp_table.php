@@ -12,7 +12,7 @@ class CreateUserStampTable extends Migration
      */
     public function up()
     {
-        Schema::create('userstamp', function (Blueprint $table) {
+        Schema::create('user_stamps', function (Blueprint $table) {
 			$table->increments('id');
 			$table->datetime('start_time');
 			$table->datetime('end_time');
