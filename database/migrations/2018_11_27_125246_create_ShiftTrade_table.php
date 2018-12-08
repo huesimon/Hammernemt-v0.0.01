@@ -12,7 +12,7 @@ class CreateShiftTradeTable extends Migration
      */
     public function up()
     {
-        Schema::create('shifttrade', function (Blueprint $table) {
+        Schema::create('shift_trades', function (Blueprint $table) {
 			$table->increments('id');
 			$table->integer('shift_id');
 			$table->integer('original_owner_id');
