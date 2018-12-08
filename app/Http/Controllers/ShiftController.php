@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Shift;
+use App\ShiftTrade;
 
 class ShiftController extends Controller
 {
@@ -58,10 +59,27 @@ class ShiftController extends Controller
 		return $shift;
 	}
 	
-	public function release($id)
+	public function releaseInfo($id)
     {
 		$shift = Shift::find($id);
 		return view('shift.release', compact('shift'));
+	}
+	/**
+     * Release a shift (shift will become tradeable)
+     *
+     * @param  Request $request
+     * @return Request
+     */
+	public function releaseShift(Request $request)
+    {
+		$shiftTrade = new ShiftTrade;
+		$shiftTrade->original_owner_id = 2;
+		$shiftTrade->new_owner_id = 4;
+		$shiftTrade->approved = 0;
+		$shiftTrade->active = 1;
+		$shiftTrade->save();
+
+		return $shiftTrade;
     }
 
     /**
