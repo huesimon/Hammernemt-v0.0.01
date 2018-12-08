@@ -94,6 +94,15 @@ class ShiftController extends Controller
 		return view('trade.list', compact('tradeableShfits'));
 	}
 
+	public function acceptTrade($shiftTradeId) {
+		//Page with a confirmation to accept the trade
+		//Need to know who the current user is (who is logged in)
+		//Check if their id is different to the original owner
+		//Let them complete the trade
+		//Save the ShiftTrade
+		return $shiftTradeId;
+	}
+
     /**
      * Show the form for editing the specified resource.
      *

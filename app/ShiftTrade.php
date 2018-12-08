@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Shift;
 
 class ShiftTrade extends Model
 {
@@ -18,5 +19,9 @@ class ShiftTrade extends Model
 	}
 	public function scopeNoNewOwner($query) {
 		return $query->where('new_owner_id', '=', null);
+	}
+	public function getShift () {
+		$shift = Shift::find($this->shift_id);
+		return $shift;
 	}
 }

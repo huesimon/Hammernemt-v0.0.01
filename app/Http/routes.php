@@ -35,3 +35,5 @@ Route::get('/shift/release/{id}', 'ShiftController@releaseInfo');
 Route::post('/shift/release/', 'ShiftController@releaseShift');
 
 Route::get('/tradelist', ['uses' =>'ShiftController@tradeList', 'as'=>'tradeList']);
+
+Route::get('/accept/{id}', ['uses' =>'ShiftController@acceptTrade', 'as'=>'acceptTrade']);
