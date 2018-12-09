@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Shift;
+use App\ShiftTrade;
 
 class ShiftController extends Controller
 {
@@ -58,11 +59,49 @@ class ShiftController extends Controller
 		return $shift;
 	}
 	
-	public function release($id)
+	public function releaseInfo($id)
     {
 		$shift = Shift::find($id);
 		return view('shift.release', compact('shift'));
-    }
+	}
+	/**
+     * Release a shift (shift will become tradeable)
+     *
+     * @param  Request $request
+     * @return Request
+     */
+	public function releaseShift(Request $request)
+    {
+		$shiftId = $request->get('shift_id');
+		$userId = $request->get('user_id');
+		$comment = $request->get('comment');
+		$shiftTrade = new ShiftTrade;
+		$shiftTrade->shift_id = $shiftId;
+		$shiftTrade->original_owner_id = $userId;
+		$shiftTrade->new_owner_id = null;
+		$shiftTrade->approved = 0;
+		$shiftTrade->comment = $comment;
+		$shiftTrade->active = 1;
+		$shiftTrade->save();
+
+		return $shiftTrade;
+	}
+	
+	public function tradeList() {
+		//return a view with all tradeable shifts
+		//All shifts without a owner are tradeable right?
+		$tradeableShfits = ShiftTrade::noNewOwner()->active()->get();
+		return view('trade.list', compact('tradeableShfits'));
+	}
+
+	public function acceptTrade($shiftTradeId) {
+		//Page with a confirmation to accept the trade
+		//Need to know who the current user is (who is logged in)
+		//Check if their id is different to the original owner
+		//Let them complete the trade
+		//Save the ShiftTrade
+		return $shiftTradeId;
+	}
 
     /**
      * Show the form for editing the specified resource.

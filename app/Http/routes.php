@@ -12,6 +12,8 @@ use App\Shift;
 */
 // Route formatting
 //Route::get('/test/{squirrel}', ['uses' =>'SomeController@doSomething', 'as'=>'routeName']);
+//	<a href="{{route('routeName')}}"> </a>
+//We can use the route name instead of the route path
 Route::get('/', 'HomeController@index');
 
 Route::get('/user', 'UserController@index');
@@ -20,13 +22,22 @@ Route::get('/admin', 'AdminController@index');
 
 Route::get('/calendar', ['uses' =>'CalendarController@index', 'as'=>'calendar']);
 
-Route::get('/calendar/mine/{userid}', ['uses' =>'CalendarController@myCalendar', 'as'=>'calendar']);
+Route::get('/calendar/mine/{userid}', ['uses' =>'CalendarController@myCalendar', 'as'=>'myCalendar']);
 
 Route::get('/shift', 'ShiftController@index');
 
 Route::get('/shift/all', 'ShiftController@all');
 
-Route::get('/shift/{id}', 'ShiftController@show');
+Route::get('/shift/{id}', ['uses' =>'ShiftController@show', 'as'=>'showShift']);
+
+
+Route::get('/shift/release/{id}', 'ShiftController@releaseInfo');
+
+Route::post('/shift/release/', 'ShiftController@releaseShift');
+
+Route::get('/tradelist', ['uses' =>'ShiftController@tradeList', 'as'=>'tradeList']);
+
+Route::get('/accept/{id}', ['uses' =>'ShiftController@acceptTrade', 'as'=>'acceptTrade']);
 
 Route::get('/shift/release/{id}', 'ShiftController@release');
 
@@ -41,3 +52,4 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::auth();
 Route::get('/home', 'HomeController@index');
+

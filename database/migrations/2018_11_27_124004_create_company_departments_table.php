@@ -12,7 +12,7 @@ class CreateCompanyDepartmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('companydepartments', function (Blueprint $table) {
+        Schema::create('company_departments', function (Blueprint $table) {
 			$table->increments('id');
             $table->timestamps();
 		});
