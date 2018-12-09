@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
+@extends('layouts.app')
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">Welcome</div>
 
         <style>
             html, body {
@@ -56,5 +58,6 @@
 			</div>
 
         </div>
-    </body>
-</html>
+    </div>
+</div>
+@endsection

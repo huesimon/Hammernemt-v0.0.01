@@ -30,6 +30,7 @@ Route::get('/shift/all', 'ShiftController@all');
 
 Route::get('/shift/{id}', ['uses' =>'ShiftController@show', 'as'=>'showShift']);
 
+
 Route::get('/shift/release/{id}', 'ShiftController@releaseInfo');
 
 Route::post('/shift/release/', 'ShiftController@releaseShift');
@@ -37,3 +38,18 @@ Route::post('/shift/release/', 'ShiftController@releaseShift');
 Route::get('/tradelist', ['uses' =>'ShiftController@tradeList', 'as'=>'tradeList']);
 
 Route::get('/accept/{id}', ['uses' =>'ShiftController@acceptTrade', 'as'=>'acceptTrade']);
+
+Route::get('/shift/release/{id}', 'ShiftController@release');
+
+
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+Route::auth();
+Route::get('/home', 'HomeController@index');
+
