@@ -19,6 +19,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/user', 'UserController@index');
 
 Route::get('/admin', 'AdminController@index');
+Route::get('/admin/tradelist', ['uses' =>'AdminController@tradeList', 'as'=>'adminTradeList']);
 
 Route::get('/calendar', ['uses' =>'CalendarController@index', 'as'=>'calendar']);
 
