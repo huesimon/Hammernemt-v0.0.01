@@ -2,20 +2,24 @@
 
 @section('content')
 
-<ul class="list-group">
 	@foreach ($tradeableShfits as $tradeableShift)
-		<li class="list-group-item">
-			<p>
-				{{$tradeableShift->getShift()->getTimeFormattedDateStartEnd()}}
 
-				@if (!is_null($tradeableShift->comment))
-					Kommentar: {{$tradeableShift->comment}}					
-				@endif
-				<a href={{route('acceptTrade', ['id' => $tradeableShift->id] )}} class="btn btn-primary"> {{ $tradeableShift->id }} </a>
+
+	<div class="card" >
+		<div class="card-body">
+		<h4 class="card-title"> {{ $tradeableShift->getOriginalOwnerName()}}</h4>
+			<p class="card-text">
+				{!! $tradeableShift->getShift()->getTimeFormattedDateStartEndNewLine() !!}
 			</p>
-		</li>
-	@endforeach
-</ul>
+			@if (!is_null($tradeableShift->comment))
+				<p class="card-text">
+					Kommentar: {{$tradeableShift->comment}}		
+				</p>					
+			@endif
 
+			<a href={{route('acceptTrade', ['id' => $tradeableShift->id] )}} class="btn btn-primary"> Anmod om vagt</a>
+		</div>
+	</div>
+	@endforeach
 
 @endsection

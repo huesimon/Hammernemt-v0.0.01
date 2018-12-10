@@ -48,7 +48,13 @@ class Shift extends Model
 		$date = $this->getDate();
 		$startTime = Carbon::parse($this->start_time)->format('H:i:s');
 		$endTime = Carbon::parse($this->end_time)->format('H:i:s');
-		return 'Dato: ' . $date . ' Tidspunkt: '. $startTime . ' - ' . $endTime;
+		return 'Dato: ' . $date . 'Tidspunkt: '. $startTime . ' - ' . $endTime;
+	}
+	public function getTimeFormattedDateStartEndNewLine() {
+		$date = $this->getDate();
+		$startTime = Carbon::parse($this->start_time)->format('H:i:s');
+		$endTime = Carbon::parse($this->end_time)->format('H:i:s');
+		return 'Dato: ' . $date . '<br>' . 'Tidspunkt: '. $startTime . ' - ' . $endTime;
 	}
 
 	public function getUser() {

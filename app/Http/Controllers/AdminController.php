@@ -33,7 +33,8 @@ class AdminController extends Controller
 		//Set the ShiftTrade to approved
 		$shiftTrade->approved = 1;
 		$shiftTrade->save();
-		return view('home');
+		//TODO return to admin dashboard, with a messege (flashbag, something)
+		return redirect()->route('adminTradeList');
 	}
 
     /**
