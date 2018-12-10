@@ -20,8 +20,8 @@ class AdminController extends Controller
 	}
 	public function tradeList()
     {
-		$notApproved = ShiftTrade::waitingApproval()->get();
-		return $notApproved;
+		$shiftTrades = ShiftTrade::waitingApproval()->get();
+		return view('admin.tradelist.approval', compact('shiftTrades'));
     }
 
     /**
