@@ -20,6 +20,13 @@ class ShiftTrade extends Model
 	public function scopeNoNewOwner($query) {
 		return $query->where('new_owner_id', '=', null);
 	}
+	public function scopeWaitingApproval($query) {
+		return $query
+		->where('new_owner_id', '!=', null)
+		->where('original_owner_id', '!=', null)
+		->where('approved', '=', '0')
+		->where('active', '=', '1');
+	}
 	public function getShift () {
 		$shift = Shift::find($this->shift_id);
 		return $shift;

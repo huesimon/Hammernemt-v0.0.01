@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\ShiftTrade;
 class AdminController extends Controller
 {
     /**
@@ -17,6 +17,11 @@ class AdminController extends Controller
     public function index()
     {
         //
+	}
+	public function tradeList()
+    {
+		$notApproved = ShiftTrade::waitingApproval()->get();
+		return $notApproved;
     }
 
     /**
