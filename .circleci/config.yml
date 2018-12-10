@@ -23,7 +23,7 @@ jobs:
                 fi
                 if [ "$CIRCLE_BRANCH" == "dev" ];
                 then
-                    git ftp init
+                    git ftp catchup
                     git ftp push --user "${FTP_USERNAME}" --passwd "${FTP_PASSWORD}" ftp://hammernemt.dk/dev
                     echo "Pushing to dev"
                 fi
