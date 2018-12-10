@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -17,6 +18,17 @@ class UserController extends Controller
     public function index()
     {
         //
+    }
+
+
+    /**
+     *
+     * Getting stamps from one user
+     */
+
+    public function  myStamps($id){
+        $stamps = DB::Table('userStamp')->where('UserId',$id)->get();
+        return view('user.mystamps',compact('stamps'));
     }
 
     /**
