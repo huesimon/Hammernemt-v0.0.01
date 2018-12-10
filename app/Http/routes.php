@@ -52,3 +52,6 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::auth();
 Route::get('/home', 'HomeController@index');
 
+
+Route::get('user/mystamps/{id}', 'UserController@myStamps');
+
