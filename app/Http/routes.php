@@ -39,7 +39,9 @@ Route::get('/tradelist', ['uses' =>'ShiftController@tradeList', 'as'=>'tradeList
 
 Route::get('/accept/{id}', ['uses' =>'ShiftController@acceptTrade', 'as'=>'acceptTrade']);
 
-Route::get('/UserStamp', 'UserStampController@index');
+Route::get('/UserStamp/{id}', 'UserStampController@index');
+
+Route::get('/UserStamp/begin/{id}', ['uses' =>'UserStampController@begin', 'as'=>'beginShift']);
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

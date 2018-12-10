@@ -2,26 +2,30 @@
 
 @section('content')
 
-<h1>Stempel mig ind</h1>
-<table class="table">
-    <thead>
+<h1>Registrering</h1>
+
+<div class="stamp">
+    <table class="table">
+        <thead>
     
-        <tr>
-            <th>Dato</th>        
-        </tr>
+            <tr>
+                <th>Dato</th>        
+            </tr>
     
-        <tr>
-            <th>Tid</th>
-        </tr>
+            <tr>
+                <th>Tid</th>
+            </tr>
 
-        <tr>
-            <th>Afdeling</th>
-        </tr>
+            <tr>
+                <th>Afdeling</th>
+            </tr>
 
-    </thead>
+        </thead>
 
-</table>
+    </table>
 
-    <button type="button">Stempel Ind</button>
+</div>
+
+    <button href="{{route('beginShift')}}" type="button">Stempel Ind</button>
 
 @endsection
