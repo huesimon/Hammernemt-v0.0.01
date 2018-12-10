@@ -14,7 +14,7 @@
 			@if (!is_null($trade->comment))
 				Kommentar: {{$trade->comment}}					
 			@endif
-			<a href={{route('acceptTrade', ['id' => $trade->id] )}} class="btn btn-primary"> {{ $trade->id }} </a>
+			<a href="{{route('adminAcceptTrade', ['id' => $trade->id] )}}" class="btn btn-primary"> {{ $trade->id }} </a>
 		</p>
 	</li>
 
