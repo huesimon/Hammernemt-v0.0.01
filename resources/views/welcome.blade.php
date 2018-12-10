@@ -53,7 +53,9 @@
 					<a href="{{route('tradeList')}}">Ledige vagter</a>
 				</h1>
 				<h1>
-					<a href="{{route('calendar')}}">Mine timer</a>
+					<a href={{route('myCalendar', [
+						'id' => Auth::user()->id
+						])}}>Mine timer</a>
 				</h1>
 			</div>
 
