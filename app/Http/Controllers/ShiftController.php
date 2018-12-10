@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Shift;
@@ -100,7 +100,19 @@ class ShiftController extends Controller
 		//Check if their id is different to the original owner
 		//Let them complete the trade
 		//Save the ShiftTrade
-		return $shiftTradeId;
+		$shiftTrade = ShiftTrade::find($shiftTradeId);
+		//Check if Auth::user is the one that made the trade
+		if ( !is_null(Auth::user()) &&
+			$shiftTrade->original_owner_id != Auth::user()->id) {
+			$result =  'YAY YOU CAN ACCEPT THE TRADE';
+			$shiftTrade->new_owner_id = Auth::user()->id;
+			$shiftTrade->save();
+		} else {
+			$result = 'you cant accept your own';
+		}
+
+		
+		return $result;
 	}
 
     /**
