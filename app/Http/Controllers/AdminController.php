@@ -33,7 +33,7 @@ class AdminController extends Controller
 		//Set the ShiftTrade to approved
 		$shiftTrade->approved = 1;
 		$shiftTrade->save();
-		//TODO return to admin dashboard, with a messege (flashbag, something)
+		session()->flash('message', 'Du har nu accepteret byttet mellem ' . ' INDSÆT NANV'  . ' og ' . 'INDSÆT NAVN2');
 		return redirect()->route('adminTradeList');
 	}
 

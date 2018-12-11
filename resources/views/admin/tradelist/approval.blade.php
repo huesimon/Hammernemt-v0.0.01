@@ -17,7 +17,7 @@
 				</p>					
 			@endif
 
-			<a href={{route('acceptTrade', ['id' => $trade->id] )}} class="btn btn-success"> Godkend vagt</a>
+			<a href={{route('adminAcceptTrade', ['id' => $trade->id] )}} class="btn btn-success"> Godkend vagt</a>
 		</div>
 	</div>
 

@@ -10,6 +10,15 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
+	@if ($flash = session('message'))	
+		<div id="flash-message" class="alert alert-success" role="alert" >
+			{{ $flash }}
+		</div>
+	@endif
+	<h1>OLD LAYOUT CHANGE TO layouts.app </h1>
+	<h1>OLD LAYOUT CHANGE TO layouts.app </h1>
+	<h1>OLD LAYOUT CHANGE TO layouts.app </h1>
+	<h1>OLD LAYOUT CHANGE TO layouts.app </h1>
 	<div class="container">
 		@yield('content')
 	</div>

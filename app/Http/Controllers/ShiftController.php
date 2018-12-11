@@ -76,6 +76,7 @@ class ShiftController extends Controller
 		$userId = $request->get('user_id');
 		$comment = $request->get('comment');
 		$shiftTrade = new ShiftTrade;
+		$shift = Shift::find($shiftId);
 		$shiftTrade->shift_id = $shiftId;
 		$shiftTrade->original_owner_id = $userId;
 		$shiftTrade->new_owner_id = null;
@@ -83,8 +84,8 @@ class ShiftController extends Controller
 		$shiftTrade->comment = $comment;
 		$shiftTrade->active = 1;
 		$shiftTrade->save();
-
-		return $shiftTrade;
+		session()->flash('message', 'Du har nu frigivet din vagt ' . $shift->getTitle());
+		return redirect()->route('home');
 	}
 	
 	public function tradeList() {
@@ -104,15 +105,13 @@ class ShiftController extends Controller
 		//Check if Auth::user is the one that made the trade
 		if ( !is_null(Auth::user()) &&
 			$shiftTrade->original_owner_id != Auth::user()->id) {
-			$result =  'YAY YOU CAN ACCEPT THE TRADE';
 			$shiftTrade->new_owner_id = Auth::user()->id;
 			$shiftTrade->save();
+			session()->flash('message', 'Du har nu anmodet om vagnten, venter på accept af leder.');
 		} else {
-			$result = 'you cant accept your own';
+			session()->flash('message', 'Du kan ikke anmode om din egen vagt.');
 		}
-
-		
-		return $result;
+		return redirect()->back();
 	}
 
     /**

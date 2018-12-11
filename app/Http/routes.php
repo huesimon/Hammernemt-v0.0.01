@@ -16,6 +16,9 @@ use App\Shift;
 //We can use the route name instead of the route path
 Route::get('/', 'HomeController@index');
 
+
+Route::get('/', ['uses' =>'HomeController@index', 'as'=>'home']);
+
 Route::get('/user', 'UserController@index');
 
 Route::get('/admin', 'AdminController@index');
