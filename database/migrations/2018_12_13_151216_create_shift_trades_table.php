@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateShiftTradesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-			$table->string('password');
-			$table->string('phone');
+        Schema::create('shift_trades', function (Blueprint $table) {
+			$table->increments('id');
+			$table->integer('shift_id');
+			$table->integer('original_owner_id');
+			$table->integer('new_owner_id')->nullable();
+			$table->boolean('approved');
+			$table->text('comment')->nullable();
 			$table->boolean('active');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('shift_trades');
     }
 }
