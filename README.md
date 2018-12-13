@@ -1,4 +1,5 @@
 # Hammernemt
+___
 
 # Live site
 
@@ -11,6 +12,7 @@ live [![CircleCI](https://circleci.com/gh/huesimon/Hammernemt/tree/master.svg?st
 https://www.dev.hammernemt.dk/
 
 dev [![CircleCI](https://circleci.com/gh/huesimon/Hammernemt/tree/dev.svg?style=svg)](https://circleci.com/gh/huesimon/Hammernemt/tree/dev)
+____
 
 # Setup
 
@@ -27,6 +29,7 @@ Port: 3306
 Username: PREFIX_username
 
 Default Schema: PREFIX_schemaName
+___
 
 ## Laravel
 
@@ -41,12 +44,15 @@ Default Schema: PREFIX_schemaName
 - Run `php artisan migrate`
 - Run `php artisan db:seed` to run seeders, if any.
 - Run `php artisan serve`
+____
+For at refreshe databasen:
 
-
+- Run `php artisan migrate:fresh`
+___
 # Contact
 
 ## Discord 
 
 https://discord.gg/bdCzMuS
-
+____
 

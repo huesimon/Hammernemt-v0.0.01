@@ -14,7 +14,7 @@ class AddFkCompanyIdToCompanyDepartments extends Migration
     public function up()
     {
         Schema::table('company_departments', function (Blueprint $table) {
-			$table->unsignedInteger('company_id');
+			$table->unsignedInteger('company_id')->nullable();
 			$table->foreign('company_id')->references('id')->on('companies')->nullable()->default(null);
 		
         });

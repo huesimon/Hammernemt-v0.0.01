@@ -14,7 +14,7 @@ class AddFkCompanyIdToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-			$table->unsignedInteger('company_id');
+			$table->unsignedInteger('company_id')->nullable();
 			$table->foreign('company_id')->references('id')->on('companies');
         });
     }

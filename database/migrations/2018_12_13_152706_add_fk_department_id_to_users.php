@@ -14,7 +14,7 @@ class AddFkDepartmentIdToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-			$table->unsignedInteger('department_id');
+			$table->unsignedInteger('department_id')->nullable();
 			$table->foreign('department_id')->references('id')->on('company_departments')->nullable()->default(null);
 		
         });
