@@ -37,7 +37,7 @@ Default Schema: PREFIX_schemaName
 - Download composer https://getcomposer.org/download/
 - Pull Laravel/php project from git provider.
 - Run `composer install`
-- Run php artisan key:generate
+- Run `php artisan key:generate`
 - Run `php artisan migrate`
 - Run `php artisan db:seed` to run seeders, if any.
 - Run `php artisan serve`
