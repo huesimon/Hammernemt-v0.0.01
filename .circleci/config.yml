@@ -21,7 +21,6 @@ jobs:
                     git config git-ftp.url "ftp://hammernemt.dk/live"
                     git config git-ftp.user "${FTP_USERNAME}"
                     git config git-ftp.password "${FTP_PASSWORD}"
-                    git ftp init
                     git ftp push
                     echo "Pushing to live"
                 fi
