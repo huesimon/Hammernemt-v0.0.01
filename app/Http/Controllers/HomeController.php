@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+		//if a user is logged in, let them see the dashboard
+		
+        return view('user.dashboard');
     }
 }

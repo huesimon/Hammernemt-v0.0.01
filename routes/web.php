@@ -10,10 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['uses' =>'HomeController@index', 'as'=>'home']);
 
 Auth::routes();
 
@@ -35,12 +32,11 @@ Route::get('/shift/{id}', ['uses' =>'ShiftController@show', 'as'=>'showShift']);
 
 Route::get('/shift/release/{id}', 'ShiftController@releaseInfo');
 
-Route::post('/shift/release/', 'ShiftController@releaseShift');
+Route::post('/shift/release/{id}', 'ShiftController@releaseShift');
 
 Route::get('/tradelist', ['uses' =>'ShiftController@tradeList', 'as'=>'tradeList']);
 
 Route::get('/accept/{id}', ['uses' =>'ShiftController@acceptTrade', 'as'=>'acceptTrade']);
 
-Route::get('user/mystamps/{id}', 'UserController@myStamps');
-
+Route::get('user/mystamps/{id}', ['uses' =>'UserController@myStamps', 'as'=>'myStamps']);
 

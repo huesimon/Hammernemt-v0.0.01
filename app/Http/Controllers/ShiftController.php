@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Shift;
+use App\ShiftTrade;
 use Illuminate\Http\Request;
 
 class ShiftController extends Controller
@@ -15,7 +16,44 @@ class ShiftController extends Controller
     public function index()
     {
         //
-    }
+	}
+	
+	public function tradeList() {
+		//return a view with all tradeable shifts
+		//All shifts without a owner are tradeable right?
+		$tradeableShfits = ShiftTrade::noNewOwner()->active()->get();
+		return view('user.trade.list', compact('tradeableShfits'));
+	}
+
+	public function releaseInfo($id)
+    {
+		$shift = Shift::find($id);
+		return view('shift.release', compact('shift'));
+	}
+
+	/**
+     * Release a shift (shift will become tradeable)
+     *
+     * @param  Request $request
+     * @return Request
+     */
+	public function releaseShift(Request $request)
+    {
+		$shiftId = $request->input('shiftId');
+		$userId = $request->input('userId');
+		$comment = $request->input('comment');
+		$shiftTrade = new ShiftTrade;
+		$shift = Shift::find($shiftId);
+		$shiftTrade->shift_id = $shiftId;
+		$shiftTrade->original_owner_id = $userId;
+		$shiftTrade->new_owner_id = null;
+		$shiftTrade->approved = 0;
+		$shiftTrade->comment = $comment;
+		$shiftTrade->active = 1;
+		$shiftTrade->save();
+		session()->flash('message', 'Du har nu frigivet din vagt ' . $shift->getTitle());
+		return redirect()->route('home');
+	}
 
     /**
      * Show the form for creating a new resource.
