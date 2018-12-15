@@ -31,7 +31,19 @@ class CalendarController extends Controller
 			}
 		}
 		
-		$calendar = Calendar::addEvents($events);
+		$calendar = Calendar::addEvents($events)->setOptions([
+			'header' => [
+				'left' => 'prev,next today',
+				'center' => 'title',
+				'right' => 'month,agendaWeek,agendaDay',
+			],
+			'defaultView' => 'month',
+			'eventLimit' => true,
+			'nowIndicator' => true,
+			'weekends' => false,
+			'minTime' => '06:00:00',
+			'maxTime' => '24:00:00',
+		]);
 		return view('user.calendar.index', compact('calendar'));
 	
 	}
@@ -58,7 +70,19 @@ class CalendarController extends Controller
 			}
 		}
 		
-		$calendar = Calendar::addEvents($events);
+		$calendar = Calendar::addEvents($events)->setOptions([
+			'header' => [
+				'left' => 'prev,next today',
+				'center' => 'title',
+				'right' => 'month,agendaWeek,agendaDay',
+			],
+			'defaultView' => 'agendaWeek',
+			'eventLimit' => true,
+			'nowIndicator' => true,
+			'weekends' => false,
+			'minTime' => '06:00:00',
+			'maxTime' => '24:00:00',
+		]);
 		return view('user.calendar.index', compact('calendar'));
 	
 	}
