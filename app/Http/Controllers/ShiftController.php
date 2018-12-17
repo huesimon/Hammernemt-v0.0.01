@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Shift;
 use App\ShiftTrade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShiftController extends Controller
 {
