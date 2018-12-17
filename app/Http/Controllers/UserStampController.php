@@ -51,7 +51,7 @@ class UserStampController extends Controller
 
             $userStamp->save();
             
-            return redirect()->route('home')->with('id', $id);
+            return redirect()->route('myStamps')->with('id', $id);
 
         }else{
             $userStamp = new UserStamp;
