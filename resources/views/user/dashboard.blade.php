@@ -14,7 +14,7 @@
                         </div>
                     @endif
 					
-					<a href="#" class="btn btn-primary btn-lg btn-block">
+					<a href="{{route('stampIndex', ['id' => Auth::user()->id])}}" class="btn btn-primary btn-lg btn-block">
 						Stempling
 					</a>
 					

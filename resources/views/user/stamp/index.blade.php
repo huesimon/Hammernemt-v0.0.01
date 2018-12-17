@@ -18,18 +18,40 @@
 						<div class="card-body">
 						<h4 class="card-title"> {{$user->name}} </h4>
 							<p class="card-text">
-                                Dato: {{\Carbon\Carbon::now()}}
+                                @if(is_null($userStamp))
+                                Indstempling: {{\Carbon\Carbon::now()}}
+                                @else
+                                Indstempling: {{$userStamp->start_time}}
+                                @endif
                             </p>
                             
                             <p class="card-text">
-                                Tid: 
+                                Udstempling: <span class="badge badge-danger">Afventer udstempling</span> 
+                                
                             </p>
 
                             <p class="card-text">
                                 Afdeling: {{$user->getDepartmentTitle()}}
                             </p>
-                            			
-							<a href='#' class="btn btn-primary"> Stempling </a>
+
+                            <form method="POST" action="{{route('stampCreate', ['id'=> $user->id])}}">
+                                @csrf
+                                @if(is_null($userStamp))
+                                <button type="submit" class="btn btn-primary">Stempling</button>
+                                @else
+                                <select name="pause" id="pause">
+                                    <option value="Pause" selected disabled>Pause</option>
+                                    <option value="0">0</option>
+                                    <option value="15">15</option>
+                                    <option value="30">30</option>
+                                    <option value="45">45</option>
+                                    <option value="60">60</option>
+                                </select>
+                                <button type="submit" class="btn btn-danger">Stempling</button>
+                                @endif
+                                
+                            </form>
+
 						</div>
 					</div>					
                 </div>
