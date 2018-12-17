@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
 		//if a user is logged in, let them see the dashboard
-		$shifts = ShiftTrade::active()->noNewOWner()->get();
+		$tradeableShifts = ShiftTrade::active()->noNewOWner()->get();
 
         return view('user.dashboard', compact('tradeableShifts'));
     }
