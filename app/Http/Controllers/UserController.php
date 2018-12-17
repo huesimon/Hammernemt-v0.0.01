@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 //use App\Http\Requests;
-use app\UserStamp;
+use App\UserStamp;
 //use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 
