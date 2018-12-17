@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\UserStamp;
 use Illuminate\Http\Request;
+use App\User;
 
 class UserStampController extends Controller
 {
@@ -12,9 +13,13 @@ class UserStampController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return view('user.stamp.index');
+
+        //Finder user object from id
+        $user = User::find($id);
+        
+        return view('user.stamp.index', compact('user'));
     }
 
     /**
