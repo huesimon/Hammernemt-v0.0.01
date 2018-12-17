@@ -3,9 +3,19 @@
 namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class UserStamp extends Model
 {
+
+    public function scopeUnfinishedStamp($query){
+        return $query->where('end_time', '=', null)->where('user_id', '=', Auth::user()->id);
+    }
+
+    public function scopeFindByUser($query, $userId){
+
+        return $query->where('user_id', '=', $userId);
+
     public function scopeMyStamps($query, $userId=null){
         $now=Carbon::now();
         return $query->where('user_id', '=', $userId);
@@ -22,6 +32,7 @@ class UserStamp extends Model
     public  function scopeStampByDate($query, $month, $year, $uid){
         //SELECT * FROM `user_stamps` WHERE month(start_time)=11 and year(start_time)=2018
         //SELECT * FROM `user_stamps` WHERE  month(start_time)=11 and year(start_time)=2018 and user_id=102
+
 
     }
 }
