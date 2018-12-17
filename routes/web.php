@@ -41,3 +41,5 @@ Route::get('/accept/{id}', ['uses' =>'ShiftController@acceptTrade', 'as'=>'accep
 
 Route::get('user/mystamps/{id}', ['uses' =>'UserController@myStamps', 'as'=>'myStamps']);
 
+Route::get('user/stamp/{id}', ['uses' =>'UserStampController@index', 'as'=>'stampIndex']);
+
