@@ -31,6 +31,25 @@ class ShiftController extends Controller
 		return view('shift.release', compact('shift'));
 	}
 
+	public function acceptTrade($shiftTradeId) {
+		//Page with a confirmation to accept the trade
+		//Need to know who the current user is (who is logged in)
+		//Check if their id is different to the original owner
+		//Let them complete the trade
+		//Save the ShiftTrade
+		$shiftTrade = ShiftTrade::find($shiftTradeId);
+		//Check if Auth::user is the one that made the trade
+		if ( !is_null(Auth::user()) &&
+			$shiftTrade->original_owner_id != Auth::user()->id) {
+			$shiftTrade->new_owner_id = Auth::user()->id;
+			$shiftTrade->save();
+			session()->flash('message', 'Du har nu anmodet om vagnten, venter på accept af leder.');
+		} else {
+			session()->flash('message', 'Du kan ikke anmode om din egen vagt.');
+		}
+		return redirect()->back();
+	}
+
 	/**
      * Release a shift (shift will become tradeable)
      *
