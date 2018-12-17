@@ -23,7 +23,7 @@
 					</a>
 
 					<a href=" {{route('tradeList')}} " class="btn btn-primary btn-lg btn-block">
-						Ledige vagter  <span class="badge badge-light">100</span>
+						Ledige vagter  <span class="badge badge-light"> {{$tradeableShifts->count()}} </span>
 					</a>
 					
 				<a href=" {{route('myStamps', ['id' => Auth::user()->id ])}} " class="btn btn-primary btn-lg btn-block">

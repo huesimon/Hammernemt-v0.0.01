@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ShiftTrade;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,8 @@ class HomeController extends Controller
     public function index()
     {
 		//if a user is logged in, let them see the dashboard
-		
-        return view('user.dashboard');
+		$shifts = ShiftTrade::active()->noNewOWner()->get();
+
+        return view('user.dashboard', compact('tradeableShifts'));
     }
 }
