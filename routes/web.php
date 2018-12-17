@@ -17,6 +17,7 @@ Auth::routes();
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin/tradelist', ['uses' =>'AdminController@tradeList', 'as'=>'adminTradeList']);
 Route::get('/admin/accept/{id}', ['uses' =>'AdminController@acceptTrade', 'as'=>'adminAcceptTrade']);
+Route::get('/admin/decline/{id}', ['uses' =>'AdminController@declineTrade', 'as'=>'adminDeclineTrade']);
 
 Route::get('/calendar', ['uses' =>'CalendarController@index', 'as'=>'calendar']);
 
@@ -39,4 +40,6 @@ Route::get('/tradelist', ['uses' =>'ShiftController@tradeList', 'as'=>'tradeList
 Route::get('/accept/{id}', ['uses' =>'ShiftController@acceptTrade', 'as'=>'acceptTrade']);
 
 Route::get('user/mystamps/{id}', ['uses' =>'UserController@myStamps', 'as'=>'myStamps']);
+
+Route::get('user/stamp/{id}', ['uses' =>'UserStampController@index', 'as'=>'stampIndex']);
 
