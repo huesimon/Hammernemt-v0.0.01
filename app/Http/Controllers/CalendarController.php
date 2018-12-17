@@ -40,7 +40,7 @@ class CalendarController extends Controller
 			'defaultView' => 'month',
 			'eventLimit' => true,
 			'nowIndicator' => true,
-			'weekends' => false,
+			'weekends' => true,
 			'minTime' => '06:00:00',
 			'maxTime' => '24:00:00',
 		]);
@@ -79,7 +79,7 @@ class CalendarController extends Controller
 			'defaultView' => 'agendaWeek',
 			'eventLimit' => true,
 			'nowIndicator' => true,
-			'weekends' => false,
+			'weekends' => true,
 			'minTime' => '06:00:00',
 			'maxTime' => '24:00:00',
 		]);
