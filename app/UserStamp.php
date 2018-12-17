@@ -9,15 +9,19 @@ class UserStamp extends Model
 {
 
     public function scopeUnfinishedStamp($query){
-        return $query->where('end_time', '=', null)->where('user_id', '=', Auth::user()->id);
+        return $query->where('end_time', '=', null)
+        ->where('user_id', '=', Auth::user()->id)
+        ->where('start_time', '!=', null);
     }
 
     public function scopeFindByUser($query, $userId){
 
         return $query->where('user_id', '=', $userId);
 
-    public function scopeMyStamps($query, $userId=null){
-        $now=Carbon::now();
+    }
+
+    public function scopeMyStamps($query, $userId = null){
+        $now = Carbon::now();
         return $query->where('user_id', '=', $userId);
     }
     public function scopeMonthAndYear($query, $month, $year,$userId=null){

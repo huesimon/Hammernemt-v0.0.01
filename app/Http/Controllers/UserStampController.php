@@ -39,11 +39,11 @@ class UserStampController extends Controller
     public function create(Request $request, $id)
     {
 
-        if(UserStamp::findByUser($id)){
+        if(!is_null(UserStamp::unfinishedStamp()->first())){
 
             $pause = $request->input('pause');
 
-            $userStamp = UserStamp::findByUser($id)->first();
+            $userStamp = UserStamp::unfinishedStamp()->first();
 
             $userStamp->end_time = Carbon::now();
 
@@ -51,9 +51,10 @@ class UserStampController extends Controller
 
             $userStamp->save();
             
-            return redirect()->route('myStamps')->with('id', $id);
+            return redirect()->route('myStamps', ['id' => $id]);
 
         }else{
+
             $userStamp = new UserStamp;
 
             $userStamp->start_time = Carbon::now();

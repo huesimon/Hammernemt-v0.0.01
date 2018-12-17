@@ -18,7 +18,7 @@
 						<div class="card-body">
 						<h4 class="card-title"> {{$user->name}} </h4>
 							<p class="card-text">
-                                @if(is_null($userStamp))
+                                @if(!isset($userStamp))
                                 Indstempling: {{\Carbon\Carbon::now()}}
                                 @else
                                 Indstempling: {{$userStamp->start_time}}
@@ -36,7 +36,7 @@
 
                             <form method="POST" action="{{route('stampCreate', ['id'=> $user->id])}}">
                                 @csrf
-                                @if(is_null($userStamp))
+                                @if(!isset($userStamp))
                                 <button type="submit" class="btn btn-primary">Stempling</button>
                                 @else
                                 <select name="pause" id="pause">

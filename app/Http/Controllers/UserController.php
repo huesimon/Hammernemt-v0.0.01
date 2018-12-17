@@ -30,14 +30,14 @@ class UserController extends Controller
 
     public function  myStamps($id){
         $myStamps = UserStamp::myStamps($id)->get();
-        $month= Carbon::now();
+        $month = Carbon::now();
         return view('user.mystamps',compact('myStamps'));
     }
 
     public function test(){
-        $startTime =substr(UserStamp::get()->start_time, 0, 10);
-        $date=explode("-",$startTime);
-        $date2=explode("-",Carbon::now()->format('Y-m-d'));
+        $startTime = substr(UserStamp::get()->start_time, 0, 10);
+        $date = explode("-",$startTime);
+        $date2 = explode("-",Carbon::now()->format('Y-m-d'));
         dd($date2[1]);
     }
 
