@@ -30,7 +30,7 @@ class UserController extends Controller
 
     public function  myStamps($id){
         $myStamps = UserStamp::myStamps($id)->get();
-        $month= Carbon::now();
+        $month = Carbon::now();
         return view('user.mystamps',compact('myStamps'));
     }
 
