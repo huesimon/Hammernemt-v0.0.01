@@ -32,6 +32,9 @@ class ShiftTrade extends Model
 	}
 	public function getOriginalOwnerName() {
 		$originalOwner = User::find($this->original_owner_id);
+		if(is_null($originalOwner)){
+			return  "Ingen ejer";
+		}
 		return $originalOwner->name;
 	}
 	public function getNewOwnerName() {

@@ -42,13 +42,7 @@ class AdminController extends Controller
 	}
 
 	public function createShift(Request $request) {
-		// dd($request->input());
-		$userId = $request->input('inputUserId');
-		$startDate = $request->input('inputStartDate');
-		$endDate = $request->input('inputEndDate');
-		$startTime = $request->input('inputStartTime');
-		$endTime = $request->input('inputEndTime');
-		
+		// dd($request->input());		
 		$days = [
 			'Monday' => $request->input('checkboxMonday'),
 			'Tuesday' => $request->input('checkboxTuesday'),
@@ -59,26 +53,7 @@ class AdminController extends Controller
 			'Sunday' => $request->input('checkboxSunday'),
 		];
 		
-		//$this->createShiftInterval($startDate, $startTime, $endTime, $endDate, $days);
-		$shift = new Shift;
-		if (is_null($userId)) {
-			$shift->user_id = null;
-			$shift->tradeable = 1;
-			$shift->date = $startDate . ' ' .  $startTime;
-			$shift->start_time = $startDate . ' ' .  $startTime;
-			$shift->end_time = $endDate . ' ' .  $endTime;
-			$shift->save();
-
-			$shiftTrade = new ShiftTrade;
-			$shiftTrade->shift_id = $shift->id;
-			$shiftTrade->save();
-		}else {
-			$shift->user_id = $userId;
-			$shift->date = $startDate . ' ' .  $startTime;
-			$shift->start_time = $startDate . ' ' .  $startTime;
-			$shift->end_time = $endDate . ' ' .  $endTime;
-			$shift->save();
-		}
+		$this->createShiftInterval($days, $request);
 		
 		session()->flash('message', 'Vagt oprettet');
 		return redirect()->back();
@@ -92,19 +67,46 @@ class AdminController extends Controller
 		*
 		* @return void
 		*/
-		public function createShiftInterval($intervalStart, $shiftStartTime, $shiftEndTime, $intervalEnd, $days) {
+		public function createShiftInterval($days, $request) {
 			//TODO: need to create shifts
-			$begin = \Carbon\Carbon::parse($intervalStart);
-			$end = \Carbon\Carbon::parse($intervalEnd);
-			$test = \Carbon\CarbonPeriod::create('2018-12-18', '2019-02-01');
+			//Variables from Request
+			$userId = $request->input('inputUserId');
+			$intervalStart = $request->input('inputStartDate');
+			$intervalEnd = $request->input('inputEndDate');
+			$shiftStartTime = $request->input('inputStartTime');
+			$shiftEndTime = $request->input('inputEndTime');
+			
+			$period = \Carbon\CarbonPeriod::create($intervalStart, $intervalEnd);
 			$validDays = [];
 			$validDays = array_keys($days, 1);
 			$dates = [];
-			foreach ($test as $date) {
+		
+			foreach ($period as $date) {
 				if(in_array($date->format('l'), $validDays  ))
-				$dates[] = $date;
+				// $dates[] = $date;
+				$shift = new Shift;
+				if (is_null($userId)) {
+					$shift->user_id = null;
+					$shift->tradeable = 1;
+					$shift->date = $date->setTimeFromTimeString($shiftStartTime);
+					$shift->start_time = $date->setTimeFromTimeString($shiftStartTime);
+					$shift->end_time = $date->setTimeFromTimeString($shiftEndTime);
+					$shift->save();
+
+					$shiftTrade = new ShiftTrade;
+					$shiftTrade->shift_id = $shift->id;
+					$shiftTrade->save();
+				}else {
+					
+					$shift->user_id = $userId;
+					$shift->date = $date->setTimeFromTimeString($shiftStartTime);
+					$shift->start_time = $date->setTimeFromTimeString($shiftStartTime);
+					$shift->end_time = $date->setTimeFromTimeString($shiftEndTime);
+					$shift->save();
+				}
 			}
 
+			
 		}
 
 }
