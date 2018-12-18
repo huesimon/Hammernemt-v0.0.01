@@ -26,7 +26,9 @@ class HomeController extends Controller
     {
 		//if a user is logged in, let them see the dashboard
 		$tradeableShifts = ShiftTrade::active()->noNewOWner()->get();
+		//shiftNeedAppoval is only for admin
+		$shiftNeedApproval = ShiftTrade::active()->waitingApproval()->get();
 
-        return view('user.dashboard', compact('tradeableShifts'));
+        return view('user.dashboard', compact('tradeableShifts', 'shiftNeedApproval'));
     }
 }

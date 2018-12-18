@@ -36,4 +36,77 @@ class AdminController extends Controller
 		return redirect()->back();
 	}
 
+	public function createShiftView() {
+		$users = User::all();
+		return view('admin.shift.create', compact('users'));
+	}
+
+	public function createShift(Request $request) {
+		// dd($request->input());		
+		$days = [
+			'Monday' => $request->input('checkboxMonday'),
+			'Tuesday' => $request->input('checkboxTuesday'),
+			'Wednesday' => $request->input('checkboxWednesday'),
+			'Thursday' => $request->input('checkboxThursday'),
+			'Friday' => $request->input('checkboxFriday'),
+			'Saturday' => $request->input('checkboxSaturday'),
+			'Sunday' => $request->input('checkboxSunday'),
+		];
+		
+		$this->createShiftInterval($days, $request);
+		
+		session()->flash('message', 'Vagt oprettet');
+		return redirect()->back();
+		}
+
+		/**
+	 	* Create shifts within a given interval
+		* @param start $start of the interval
+		* @param end $end of the interval
+		* @param days $days array of days null or 1
+		*
+		* @return void
+		*/
+		public function createShiftInterval($days, $request) {
+			//TODO: need to create shifts
+			//Variables from Request
+			$userId = $request->input('inputUserId');
+			$intervalStart = $request->input('inputStartDate');
+			$intervalEnd = $request->input('inputEndDate');
+			$shiftStartTime = $request->input('inputStartTime');
+			$shiftEndTime = $request->input('inputEndTime');
+			
+			$period = \Carbon\CarbonPeriod::create($intervalStart, $intervalEnd);
+			$validDays = [];
+			$validDays = array_keys($days, 1);
+			$dates = [];
+		
+			foreach ($period as $date) {
+				if(in_array($date->format('l'), $validDays  ))
+				// $dates[] = $date;
+				$shift = new Shift;
+				if (is_null($userId)) {
+					$shift->user_id = null;
+					$shift->tradeable = 1;
+					$shift->date = $date->setTimeFromTimeString($shiftStartTime);
+					$shift->start_time = $date->setTimeFromTimeString($shiftStartTime);
+					$shift->end_time = $date->setTimeFromTimeString($shiftEndTime);
+					$shift->save();
+
+					$shiftTrade = new ShiftTrade;
+					$shiftTrade->shift_id = $shift->id;
+					$shiftTrade->save();
+				}else {
+					
+					$shift->user_id = $userId;
+					$shift->date = $date->setTimeFromTimeString($shiftStartTime);
+					$shift->start_time = $date->setTimeFromTimeString($shiftStartTime);
+					$shift->end_time = $date->setTimeFromTimeString($shiftEndTime);
+					$shift->save();
+				}
+			}
+
+			
+		}
+
 }

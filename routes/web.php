@@ -18,6 +18,8 @@ Route::get('/admin', 'AdminController@index');
 Route::get('/admin/tradelist', ['uses' =>'AdminController@tradeList', 'as'=>'adminTradeList']);
 Route::get('/admin/accept/{id}', ['uses' =>'AdminController@acceptTrade', 'as'=>'adminAcceptTrade']);
 Route::get('/admin/decline/{id}', ['uses' =>'AdminController@declineTrade', 'as'=>'adminDeclineTrade']);
+Route::get('/admin/shift/create', ['uses' =>'AdminController@createShiftView', 'as'=>'adminCreateShiftView']);
+Route::post('/admin/shift/create', ['uses' =>'AdminController@createShift', 'as'=>'adminCreateShift']);
 
 Route::get('/calendar', ['uses' =>'CalendarController@index', 'as'=>'calendar']);
 
