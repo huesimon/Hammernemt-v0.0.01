@@ -44,6 +44,7 @@ Route::get('/accept/{id}', ['uses' =>'ShiftController@acceptTrade', 'as'=>'accep
 Route::get('user/mystamps/{id}', ['uses' =>'UserController@myStamps', 'as'=>'myStamps']);
 
 Route::get('user/stamp/{id}', ['uses' =>'UserStampController@index', 'as'=>'stampIndex']);
-
 Route::post('user/stamp/{id}', ['uses' =>'UserStampController@create', 'as'=>'stampCreate']);
 
+
+Route::get('user/mystamps/{id}/{month}', ['uses' =>'UserController@selectMonth', 'as'=>'myStamps']);

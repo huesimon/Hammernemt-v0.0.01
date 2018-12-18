@@ -21,7 +21,6 @@
                                     <div  class="col" style="text-align: center">{{$myStamp->pause}}</div>
                                     <div  class="col" style="text-align: center">{{$myStamp->approved}}</div>
                                 </div><br>
-
                         @endforeach
                     </div>
                     <div class="card-body">
@@ -45,7 +44,5 @@
             </div>
         </div>
     </div>
-
-
 
 @endsection

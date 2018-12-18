@@ -26,7 +26,7 @@
 						Ledige vagter  <span class="badge badge-light"> {{$tradeableShifts->count()}} </span>
 					</a>
 					
-				<a href=" {{route('myStamps', ['id' => Auth::user()->id ])}} " class="btn btn-primary btn-lg btn-block">
+				<a href=" {{route('myStamps', ['id' => Auth::user()->id, 'month' => \Carbon\Carbon::now()->month])}} " class="btn btn-primary btn-lg btn-block">
 					Timeoversigt
 				</a>
 				@if (Auth::user()->isAdmin())
