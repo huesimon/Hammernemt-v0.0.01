@@ -73,8 +73,8 @@ class AdminController extends Controller
 			$userId = $request->input('inputUserId');
 			$intervalStart = $request->input('inputStartDate');
 			$intervalEnd = $request->input('inputEndDate');
-			$shiftStartTime = $request->input('inputStartTime');
-			$shiftEndTime = $request->input('inputEndTime');
+			$shiftStartTime = $request->input('inputStartTime') . ':00';
+			$shiftEndTime = $request->input('inputEndTime') . ':00';
 			
 			$period = \Carbon\CarbonPeriod::create($intervalStart, $intervalEnd);
 			$validDays = [];
@@ -102,10 +102,11 @@ class AdminController extends Controller
 					$shift = new Shift;
 					$shift->user_id = $userId;
 					$shift->date = $date->setTimeFromTimeString($shiftStartTime);
-					$shift->start_time = $date->setTimeFromTimeString($shiftStartTime);
-					$shift->end_time = $date->setTimeFromTimeString($shiftEndTime);
+					$shift->start_time = $date->setTimeFromTimeString($shiftStartTime)->toDateTimeString();
+					$shift->end_time = $date->setTimeFromTimeString($shiftEndTime)->toDateTimeString();
 					$shift->save();
 				}
+				
 			}
 
 			
