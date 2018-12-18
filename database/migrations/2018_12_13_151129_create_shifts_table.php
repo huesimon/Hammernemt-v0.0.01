@@ -17,7 +17,7 @@ class CreateShiftsTable extends Migration
 			$table->increments('id');
 			$table->datetime('date');
             $table->integer('break')->nullable();
-            $table->boolean('tradeable');
+            $table->boolean('tradeable')->default(0);
             $table->datetime('start_time');
             $table->datetime('end_time');
             $table->integer('user_id');

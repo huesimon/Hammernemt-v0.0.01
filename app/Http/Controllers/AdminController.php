@@ -36,4 +36,26 @@ class AdminController extends Controller
 		return redirect()->back();
 	}
 
+	public function createShiftView() {
+		$users = User::all();
+		return view('admin.shift.create', compact('users'));
+	}
+
+	public function createShift(Request $request) {
+		// dd($request->input());
+		$userId = $request->input('inputUserId');
+		$startDate = $request->input('inputStartDate');
+		$endDate = $request->input('inputEndDate');
+		$startTime = $request->input('inputStartTime');
+		$endTime = $request->input('inputEndTime');
+		$shift = new Shift;
+		$shift->user_id = $userId;
+		$shift->date = $startDate . ' ' .  $startTime;
+		$shift->start_time = $startDate . ' ' .  $startTime;
+		$shift->end_time = $endDate . ' ' .  $endTime;
+		$shift->save();
+		
+
+		}
+
 }
