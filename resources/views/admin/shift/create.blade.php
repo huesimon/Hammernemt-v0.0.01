@@ -38,50 +38,50 @@
 
 								<div class="form-check form-check-inline">
 									<label class="form-check-label">
-										<input class="form-check-input" type="checkbox" id="checkboxMonday" value="1"> Mandag
+										<input class="form-check-input" type="checkbox" id="checkboxMonday" name="checkboxMonday" value="1"> Mandag
 									</label>
 								</div>
 
 								<div class="form-check form-check-inline">
 									<label class="form-check-label">
-										<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="1"> Tirsdag
+										<input class="form-check-input" type="checkbox" id="checkboxTuesday" name="checkboxTuesday" value="1"> Tirsdag
 									</label>
 								</div>
 
 								<div class="form-check form-check-inline">
 									<label class="form-check-label">
-										<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="1"> Onsdag
+										<input class="form-check-input" type="checkbox" id="checkboxWednesday" name="checkboxWednesday" value="1"> Onsdag
 									</label>
 								</div>
 
 								<div class="form-check form-check-inline">
 									<label class="form-check-label">
-										<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="1"> Torsdag
+										<input class="form-check-input" type="checkbox" id="checkboxThursday" name="checkboxThursday" value="1"> Torsdag
 									</label>
 								</div>
 
 								<div class="form-check form-check-inline">
 									<label class="form-check-label">
-										<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="1"> Fredag
+										<input class="form-check-input" type="checkbox" id="checkboxFriday" name="checkboxFriday" value="1"> Fredag
 									</label>
 								</div>
 
 								<div class="form-check form-check-inline">
 									<label class="form-check-label">
-										<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="1"> Lørdag
+										<input class="form-check-input" type="checkbox" id="checkboxSaturday" name="checkboxSaturday"  value="1"> Lørdag
 									</label>
 								</div>
 
 								<div class="form-check form-check-inline">
 									<label class="form-check-label">
-										<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="1"> Søndag
+										<input class="form-check-input" type="checkbox" id="checkboxSunday" name="checkboxSunday"  value="1"> Søndag
 									</label>
 								</div>
 
 								<div class="form-group">
 									<label for="inputUserId">Vælg person:</label>
 									<select class="custom-select" id="inputUserId" name="inputUserId">
-										<option selected>Vælg person</option>
+										<option value = "" selected>Vælg person</option>
 										@foreach ($users as $user)
 											<option value="{{$user->id}}"> {{$user->name}} </option>
 										@endforeach

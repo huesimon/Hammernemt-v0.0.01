@@ -48,13 +48,62 @@ class AdminController extends Controller
 		$endDate = $request->input('inputEndDate');
 		$startTime = $request->input('inputStartTime');
 		$endTime = $request->input('inputEndTime');
-		$shift = new Shift;
-		$shift->user_id = $userId;
-		$shift->date = $startDate . ' ' .  $startTime;
-		$shift->start_time = $startDate . ' ' .  $startTime;
-		$shift->end_time = $endDate . ' ' .  $endTime;
-		$shift->save();
 		
+		$days = [
+			'Monday' => $request->input('checkboxMonday'),
+			'Tuesday' => $request->input('checkboxTuesday'),
+			'Wednesday' => $request->input('checkboxWednesday'),
+			'Thursday' => $request->input('checkboxThursday'),
+			'Friday' => $request->input('checkboxFriday'),
+			'Saturday' => $request->input('checkboxSaturday'),
+			'Sunday' => $request->input('checkboxSunday'),
+		];
+		
+		//$this->createShiftInterval($startDate, $startTime, $endTime, $endDate, $days);
+		$shift = new Shift;
+		if (is_null($userId)) {
+			$shift->user_id = null;
+			$shift->tradeable = 1;
+			$shift->date = $startDate . ' ' .  $startTime;
+			$shift->start_time = $startDate . ' ' .  $startTime;
+			$shift->end_time = $endDate . ' ' .  $endTime;
+			$shift->save();
+
+			$shiftTrade = new ShiftTrade;
+			$shiftTrade->shift_id = $shift->id;
+			$shiftTrade->save();
+		}else {
+			$shift->user_id = $userId;
+			$shift->date = $startDate . ' ' .  $startTime;
+			$shift->start_time = $startDate . ' ' .  $startTime;
+			$shift->end_time = $endDate . ' ' .  $endTime;
+			$shift->save();
+		}
+		
+		session()->flash('message', 'Vagt oprettet');
+		return redirect()->back();
+		}
+
+		/**
+	 	* Create shifts within a given interval
+		* @param start $start of the interval
+		* @param end $end of the interval
+		* @param days $days array of days null or 1
+		*
+		* @return void
+		*/
+		public function createShiftInterval($intervalStart, $shiftStartTime, $shiftEndTime, $intervalEnd, $days) {
+			//TODO: need to create shifts
+			$begin = \Carbon\Carbon::parse($intervalStart);
+			$end = \Carbon\Carbon::parse($intervalEnd);
+			$test = \Carbon\CarbonPeriod::create('2018-12-18', '2019-02-01');
+			$validDays = [];
+			$validDays = array_keys($days, 1);
+			$dates = [];
+			foreach ($test as $date) {
+				if(in_array($date->format('l'), $validDays  ))
+				$dates[] = $date;
+			}
 
 		}
 

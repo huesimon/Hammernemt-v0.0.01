@@ -20,7 +20,7 @@ class CreateShiftsTable extends Migration
             $table->boolean('tradeable')->default(0);
             $table->datetime('start_time');
             $table->datetime('end_time');
-            $table->integer('user_id');
+            $table->integer('user_id')->nullable();
             $table->integer('company_department_id')->nullable();
             $table->timestamps();
         });
