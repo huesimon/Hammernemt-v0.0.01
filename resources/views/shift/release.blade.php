@@ -14,7 +14,7 @@
 	
 	<div class="form-group">
 	  <label for="exampleTextarea">Skriv en kommentar til frigivelsen af din vagt</label>
-	  <input type="text" name="comment" value="testing">
+	  <input type="text" name="comment" placeholder="Skriv evt. en kommentar">
 	</div>
 	<input type="hidden" name="shiftId" value="{{$shift->id}}">
 	<input type="hidden" name="userId" value="{{Auth::user()->id}}">
