@@ -37,6 +37,8 @@ class User extends Authenticatable
 		if (!is_null($this->user_role_id)) {
 			if (UserRole::MyRole($this->user_role_id)->first()->type == 'admin' || UserRole::MyRole($this->user_role_id)->first()->type == 'Admin') {
 				$result =  true;
+			}else {
+				$result = false;
 			}
 		}else {
 			$result = false;
