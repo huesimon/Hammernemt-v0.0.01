@@ -43,6 +43,5 @@ Route::get('user/mystamps/{id}', ['uses' =>'UserController@myStamps', 'as'=>'myS
 
 Route::get('user/stamp/{id}', ['uses' =>'UserStampController@index', 'as'=>'stampIndex']);
 
-Route::get('user/mystamps/{id}/{month}', ['uses' =>'UserController@test', 'as'=>'myStamps']);
 
 Route::get('user/mystamps/{id}/{month}', ['uses' =>'UserController@selectMonth', 'as'=>'myStamps']);

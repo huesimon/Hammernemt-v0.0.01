@@ -42,7 +42,7 @@
 							</a>
 						</li>
 						<li class="nav-item dropdown">
-							<a href=" {{route('myStamps', ['id' => Auth::user()->id ])}} " class="nav-link">
+							<a href=" {{route('myStamps', ['id' => Auth::user()->id, 'month' => \Carbon\Carbon::now()->month])}} " class="nav-link">
 								Timeoversigt
 							</a>
 						</li>
