@@ -34,10 +34,12 @@ class User extends Authenticatable
         return "Hammernemt";
 	}
 	public function isAdmin() {
-		if (UserRole::MyRole($this->user_role_id)->first()->type == 'admin' || UserRole::MyRole($this->user_role_id)->first()->type == 'Admin') {
-			$result =  true;
-		}else {
-			$result = false;
+		if (!is_null($this->user_role_id)) {
+			if (UserRole::MyRole($this->user_role_id)->first()->type == 'admin' || UserRole::MyRole($this->user_role_id)->first()->type == 'Admin') {
+				$result =  true;
+			}else {
+				$result = false;
+			}
 		}
 		return $result;
 	}
