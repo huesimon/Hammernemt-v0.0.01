@@ -27,12 +27,21 @@
 					</a>
 					
 				<a href=" {{route('myStamps', ['id' => Auth::user()->id ])}} " class="btn btn-primary btn-lg btn-block">
-						Timeoversigt
-					</a>
+					Timeoversigt
+				</a>
 
-					<a href="#" class="btn btn-danger btn-lg btn-block">
-						Admin
-					</a>
+				<a href="#" class="btn btn-danger btn-lg btn-block">
+					Regiger vagt plan
+				</a>
+
+				<a href="{{ route('adminCreateShiftView') }}" class="btn btn-danger btn-lg btn-block">
+					Opret vagt / periode
+				</a>
+
+
+				<a href="{{ route('adminTradeList') }}" class="btn btn-danger btn-lg btn-block">
+				Andmodninger <span class="badge badge-light"> {{ $shiftNeedApproval->count() }}</span>
+				</a>
                 </div>
             </div>
         </div>
