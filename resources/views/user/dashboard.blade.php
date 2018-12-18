@@ -29,7 +29,8 @@
 				<a href=" {{route('myStamps', ['id' => Auth::user()->id ])}} " class="btn btn-primary btn-lg btn-block">
 					Timeoversigt
 				</a>
-
+				@if (Auth::user()->isAdmin())
+				
 				<a href="#" class="btn btn-danger btn-lg btn-block">
 					Rediger vagt plan
 				</a>
@@ -42,6 +43,8 @@
 				<a href="{{ route('adminTradeList') }}" class="btn btn-danger btn-lg btn-block">
 				Andmodninger <span class="badge badge-light"> {{ $shiftNeedApproval->count() }}</span>
 				</a>
+					
+				@endif
                 </div>
             </div>
         </div>

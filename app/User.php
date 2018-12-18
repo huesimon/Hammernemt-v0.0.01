@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\UserRole;
 
 class User extends Authenticatable
 {
@@ -31,5 +32,13 @@ class User extends Authenticatable
     public function getDepartmentTitle(){
         //ToDo
         return "Hammernemt";
-    }
+	}
+	public function isAdmin() {
+		if (UserRole::MyRole($this->user_role_id)->first()->type == 'admin' || UserRole::MyRole($this->user_role_id)->first()->type == 'Admin') {
+			$result =  true;
+		}else {
+			$result = false;
+		}
+		return $result;
+	}
 }
