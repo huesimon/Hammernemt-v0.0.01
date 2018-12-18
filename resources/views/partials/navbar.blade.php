@@ -27,22 +27,22 @@
 						@endif
 					@else
 						<li class="nav-item dropdown">
-							<a href="#" class="nav-link">
+							<a href="{{route('stampIndex', ['id' => Auth::user()->id])}}" class="nav-link">
 								Stempling
 							</a>
 						</li>
 						<li class="nav-item dropdown">
-							<a href="#" class="nav-link">
+							<a href=" {{route('myCalendar', ['id' => Auth::user()->id])}} "  class="nav-link">
 								Vagtplan
 							</a>
 						</li>
 						<li class="nav-item dropdown">
-							<a href="#" class="nav-link">
+							<a href=" {{route('tradeList')}} "class="nav-link">
 								Ledige vagter
 							</a>
 						</li>
 						<li class="nav-item dropdown">
-							<a href="#" class="nav-link">
+							<a href=" {{route('myStamps', ['id' => Auth::user()->id ])}} " class="nav-link">
 								Timeoversigt
 							</a>
 						</li>

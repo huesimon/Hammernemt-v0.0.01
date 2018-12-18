@@ -31,7 +31,7 @@
 				</a>
 
 				<a href="#" class="btn btn-danger btn-lg btn-block">
-					Regiger vagt plan
+					Rediger vagt plan
 				</a>
 
 				<a href="{{ route('adminCreateShiftView') }}" class="btn btn-danger btn-lg btn-block">
