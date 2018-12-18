@@ -84,8 +84,9 @@ class AdminController extends Controller
 			foreach ($period as $date) {
 				if(in_array($date->format('l'), $validDays  ))
 				// $dates[] = $date;
-				$shift = new Shift;
 				if (is_null($userId)) {
+					
+					$shift = new Shift;
 					$shift->user_id = null;
 					$shift->tradeable = 1;
 					$shift->date = $date->setTimeFromTimeString($shiftStartTime);
@@ -98,6 +99,7 @@ class AdminController extends Controller
 					$shiftTrade->save();
 				}else {
 					
+					$shift = new Shift;
 					$shift->user_id = $userId;
 					$shift->date = $date->setTimeFromTimeString($shiftStartTime);
 					$shift->start_time = $date->setTimeFromTimeString($shiftStartTime);
