@@ -16,13 +16,13 @@ class ShiftTrade extends Model
 	public function scopeNotApproved($query) {
 		return $query->where('approved', '=', 0);
 	}
+	
 	public function scopeNoNewOwner($query) {
 		return $query->where('new_owner_id', '=', null);
 	}
 	public function scopeWaitingApproval($query) {
 		return $query
 		->where('new_owner_id', '!=', null)
-		->where('original_owner_id', '!=', null)
 		->where('approved', '=', '0')
 		->where('active', '=', '1');
 	}
@@ -32,6 +32,9 @@ class ShiftTrade extends Model
 	}
 	public function getOriginalOwnerName() {
 		$originalOwner = User::find($this->original_owner_id);
+		if(is_null($originalOwner)){
+			return  "Ingen ejer";
+		}
 		return $originalOwner->name;
 	}
 	public function getNewOwnerName() {

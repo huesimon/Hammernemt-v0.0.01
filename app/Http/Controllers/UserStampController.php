@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\UserStamp;
 use Illuminate\Http\Request;
+use App\User;
+use Carbon\Carbon;
 
 class UserStampController extends Controller
 {
@@ -12,9 +14,21 @@ class UserStampController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return view('user.stamp.index');
+
+        //Finder user object from id
+        $user = User::find($id);
+        
+        if(is_null(UserStamp::unfinishedStamp()->first())){
+            $view = view('user.stamp.index', compact('user'));
+        }else{
+            $userStamp = UserStamp::unfinishedStamp()->first();
+            $view = view('user.stamp.index', compact('user', 'userStamp'));
+           }
+        
+        return $view;
+
     }
 
     /**
@@ -22,9 +36,35 @@ class UserStampController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $id)
     {
-        //
+
+        if(!is_null(UserStamp::unfinishedStamp()->first())){
+
+            $pause = $request->input('pause');
+
+            $userStamp = UserStamp::unfinishedStamp()->first();
+
+            $userStamp->end_time = Carbon::now();
+
+            $userStamp->pause = $pause;
+
+            $userStamp->save();
+            
+            return redirect()->route('myStamps', ['id' => $id]);
+
+        }else{
+
+            $userStamp = new UserStamp;
+
+            $userStamp->start_time = Carbon::now();
+
+            $userStamp->user_id = $id;
+
+            $userStamp->save();
+
+            return redirect()->back()->with('id', $id);
+        }
     }
 
     /**

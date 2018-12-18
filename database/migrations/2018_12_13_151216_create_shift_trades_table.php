@@ -16,11 +16,11 @@ class CreateShiftTradesTable extends Migration
         Schema::create('shift_trades', function (Blueprint $table) {
 			$table->increments('id');
 			$table->integer('shift_id');
-			$table->integer('original_owner_id');
+			$table->integer('original_owner_id')->nullable();
 			$table->integer('new_owner_id')->nullable();
-			$table->boolean('approved');
+			$table->boolean('approved')->default(0);
 			$table->text('comment')->nullable();
-			$table->boolean('active');
+			$table->boolean('active')->default(1);
             $table->timestamps();
         });
     }
