@@ -34,13 +34,22 @@ class UserController extends Controller
         return view('user.mystamps',compact('myStamps'));
     }
 
-    public function test(){
-        $startTime =substr(UserStamp::get()->start_time, 0, 10);
-        $date=explode("-",$startTime);
-        $date2=explode("-",Carbon::now()->format('Y-m-d'));
-        dd($date2[1]);
-    }
+    public function test($id,$month)
+{
 
+    $myStamps = UserStamp::myStamps($id)->byMonth($month)->byYear()->get();
+
+
+    return view('user.mystamps',compact('myStamps'));
+}
+    public function selectMonth($id,$month)
+    {
+
+        $myStamps = UserStamp::myStamps($id)->byMonth($month)->byYear()->get();
+
+
+        return view('user.mystamps',compact('myStamps'));
+    }
     /**
      * Show the form for creating a new resource.
      *
