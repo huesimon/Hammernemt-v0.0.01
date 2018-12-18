@@ -51,7 +51,7 @@ class UserStampController extends Controller
 
             $userStamp->save();
             
-            return redirect()->route('myStamps', ['id' => $id]);
+            return redirect()->route('myStamps', ['id' => $id, 'month' => Carbon::now()->month]);
 
         }else{
 
