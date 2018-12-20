@@ -17,7 +17,7 @@ class CalendarController extends Controller
 		if($shifts->count()) {
 			foreach ($shifts as $shift) {
 				$events[] = Calendar::event(
-					$shift->id . '',
+					$shift->getUserName() . '',
 					false,
 					new \DateTime($shift->start_time),
 					new \DateTime($shift->end_time),
@@ -35,7 +35,7 @@ class CalendarController extends Controller
 			'header' => [
 				'left' => 'prev,next today',
 				'center' => 'title',
-				'right' => 'month,agendaWeek,agendaDay',
+				'right' => 'month,agendaWeek,agendaDay,listWeek',
 			],
 			'defaultView' => 'month',
 			'eventLimit' => true,
@@ -74,7 +74,7 @@ class CalendarController extends Controller
 			'header' => [
 				'left' => 'prev,next today',
 				'center' => 'title',
-				'right' => 'month,agendaWeek,agendaDay',
+				'right' => 'month,agendaWeek,agendaDay,listWeek',
 			],
 			'defaultView' => 'agendaWeek',
 			'eventLimit' => true,

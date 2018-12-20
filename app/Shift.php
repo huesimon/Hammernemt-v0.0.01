@@ -16,7 +16,16 @@ class Shift extends Model
 		$user = User::find($this->user_id);
 		return $user;
 	}
-
+	public function getUserName() {
+		$user = User::find($this->user_id);
+		
+		if (is_null($user)) {
+			$userName = 'Ledig vagt';
+		}else{
+			$userName = $user->name;
+		}
+		return $userName;
+	}
 	/**
 	 * @return title String
 	 * Return the title of the shift
