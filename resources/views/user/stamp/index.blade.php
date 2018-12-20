@@ -16,17 +16,21 @@
 					
 					<div class="card" >
 						<div class="card-body">
-						<h4 class="card-title"> {{$user->name}} </h4>
+						<h4 class="card-title"> {{$user->name}} {{\Carbon\Carbon::now()->format('Y-m-d')}}</h4>
 							<p class="card-text">
                                 @if(!isset($userStamp))
-                                Indstempling: {{\Carbon\Carbon::now()}}
+                                Indstempling: <span class="badge badge-danger">Afventer indstempling</span> 
                                 @else
-                                Indstempling: {{$userStamp->start_time}}
+                                Indstempling: {{$userStamp->getStartTimeFormatted('H:i:s')}}
                                 @endif
                             </p>
                             
                             <p class="card-text">
-                                Udstempling: <span class="badge badge-danger">Afventer udstempling</span> 
+                                @if(!isset($userStamp->start_time))
+                                Udstempling: 
+                                @else
+                                Udstempling: <span class="badge badge-danger">Afventer udstempling</span>
+                                @endif 
                                 
                             </p>
 
