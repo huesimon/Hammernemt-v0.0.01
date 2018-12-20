@@ -21,7 +21,7 @@
                                 @if(!isset($userStamp))
                                 Indstempling: <span class="badge badge-danger">Afventer indstempling</span> 
                                 @else
-                                Indstempling: {{\Carbon\Carbon::parse($userStamp->start_time)->format('H:i:s')}}
+                                Indstempling: {{$userStamp->getStartTimeFormatted('H:i:s')}}
                                 @endif
                             </p>
                             

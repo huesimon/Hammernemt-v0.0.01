@@ -34,21 +34,28 @@ class UserStamp extends Model
         dd($startTime);
 
     }
-    public  function scopeStampByDate($query, $month, $year, $uid){
-        //SELECT * FROM `user_stamps` WHERE month(start_time)=11 and year(start_time)=2018
-        //SELECT * FROM `user_stamps` WHERE  month(start_time)=11 and year(start_time)=2018 and user_id=102
-
-
-    }
+   
     public function scopeByMonth($query,$month){
-        //$myStamps = DB::table('user_stamps')->where('user_id', '=', $id);
-        //$myStamps->whereMonth('start_time', '=', $month)->get();
+
         return $query->whereMonth('start_time','=',$month);
     }
+
     public function scopeByYear($query){
         $now = Carbon::now();
         $year = substr($now,0,4);
 
         return $query->whereYear('start_time', '=', $year);
     }
+
+    public function getStartTimeFormatted($format){
+
+       return Carbon::parse($this->start_time)->format($format);
+
+    }
+
+    public function getEndTimeFormatted($format){
+
+        return Carbon::parse($this->end_time)->format($format);
+ 
+     }
 }
