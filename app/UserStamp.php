@@ -4,7 +4,7 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-
+use App\User;
 class UserStamp extends Model
 {
 
@@ -12,6 +12,10 @@ class UserStamp extends Model
         return $query->where('end_time', '=', null)
         ->where('user_id', '=', Auth::user()->id)
         ->where('start_time', '!=', null);
+	}
+	public function scopeWaitingApproval($query){
+		return $query->where('approved', '=', 0)
+		->where('end_time', '!=', null);
     }
 
     public function scopeFindByUser($query, $userId){
@@ -49,5 +53,17 @@ class UserStamp extends Model
         $year = substr($now,0,4);
 
         return $query->whereYear('start_time', '=', $year);
-    }
+	}
+	public function getUserName() {
+		$user = User::find($this->user_id);
+		return $user->name;
+	}
+	public function getPayableHours() {
+		$startTime = Carbon::parse($this->start_time);
+		$endTime = Carbon::parse($this->end_time);
+		$diffInMinutes = $startTime->diffInMinutes($endTime);
+		$payableMinutes = $diffInMinutes - $this->pause;
+		$payableHours = $payableMinutes / 60; 
+		return $payableHours;
+	}
 }

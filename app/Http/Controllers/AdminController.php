@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\ShiftTrade;
 use App\Shift;
 use App\User;
+use App\UserStamp;
 class AdminController extends Controller
 {
 	public function tradeList()
@@ -105,11 +106,12 @@ class AdminController extends Controller
 					$shift->start_time = $date->setTimeFromTimeString($shiftStartTime)->toDateTimeString();
 					$shift->end_time = $date->setTimeFromTimeString($shiftEndTime)->toDateTimeString();
 					$shift->save();
-				}
-				
+				}	
 			}
-
-			
 		}
+		public function userStampsList() {
+		$userStamps = UserStamp::waitingApproval()->get();
+		return view('admin.userstamp.approval', compact('userStamps'));
+	}
 
 }
