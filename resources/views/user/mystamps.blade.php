@@ -1,48 +1,105 @@
 @extends('layouts.app')
 
-
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Stemplinger</div>
-                    <div class="row">
-                        <div class="card-body" :class=" col" style="text-align: center">Indstemplet</div>
-                        <div class="card-body" :class=" col" style="text-align: center">Udstemplet</div>
-                        <div class="card-body" :class=" col" style="text-align: center">Pause</div>
-                        <div class="card-body" :class=" col" style="text-align: center">Godkendt</div>
-                    </div>
-                    <div>
-                        @foreach($myStamps as $myStamp)
-                                <div class="row" :class="card-body">
-                                    <div  class="col" style="text-align: center" >{{$myStamp->start_time}}</div>
-                                    <div  class="col" style="text-align: center">{{$myStamp->end_time}}</div>
-                                    <div  class="col" style="text-align: center">{{$myStamp->pause}}</div>
-                                    <div  class="col" style="text-align: center">{{$myStamp->approved}}</div>
-                                </div><br>
-                        @endforeach
-                    </div>
-                    <div class="card-body">
-                        <select>
-                            <option disabled selected>Vælg måned</option>
-                            <option value="1">Januar</option>
-                            <option value="2">Febuar</option>
-                            <option value="3">Marts</option>
-                            <option value="4">April</option>
-                            <option value="5">Maj</option>
-                            <option value="6">Juni</option>
-                            <option value="7">Juli</option>
-                            <option value="8">August</option>
-                            <option value="9">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
-                    </div>
-                    </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Lønkort</div>
+                <div class="card-body">
+                    
+                    @if (session('message'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('message') }}
+                        </div>
+					@endif
+					
+					<div class="card" >
+						<div class="card-body">
+                            <div class="tg-wrap">
+                                <table class="tg" style="width: 100%;" >
+                            
+                                    <colgroup>
+                                        <col style="width: 110px">
+                                        <col style="width: 108px">
+                                        <col style="width: 418px">
+                                        <col style="width: 578px">
+                                    </colgroup>
+
+                                    @foreach ($myStamps as $myStamp)
+
+                                    <tr>
+                                        <td class="tg-iwtr"> <strong> Dato: </strong> {{$myStamp->getStartTimeFormatted("d-m-Y")}} </td>
+                                        <td class="tg-yzt1"> <strong> Start: </strong> {{$myStamp->getStartTimeFormatted("H:i")}} </td>
+                                        <td class="tg-yzt1"> <strong> Slut: </strong> {{$myStamp->getEndTimeFormatted("H:i")}} </td>
+                                        <td class="tg-yzt1"> <strong> Pause: </strong> {{$myStamp->pause}} </td>
+                                        <td class="tg-yzt1"> <strong> Godkendt: </strong> {{$myStamp->approved}} </td>
+                                        <td class="tg-yzt1"> <strong> Total: </strong> {{$myStamp->getPayableHours()}} </td>
+                                    </tr>
+
+                                    @endforeach
+                                </table>
+                            </div>
+                                  {{--  <tr>
+                                    <td class="tg-iwtr" rowspan="2">06/08/2017</td>
+                                    <td class="tg-3we0">15:00 – 16:30</td>
+                                    <td class="tg-3we0">data</td>
+                                    <td class="tg-3we0">data</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-yzt1">16:30 – 18:00</td>
+                                    <td class="tg-yzt1">data</td>
+                                    <td class="tg-yzt1">data</td>
+                                  </tr>  --}}
+                                  
+                                <div class="card-body">
+                                    <select>
+                                        <option disabled selected>Vælg måned</option>
+                                        <option value="1">Januar</option>
+                                        <option value="2">Febuar</option>
+                                        <option value="3">Marts</option>
+                                        <option value="4">April</option>
+                                        <option value="5">Maj</option>
+                                        <option value="6">Juni</option>
+                                        <option value="7">Juli</option>
+                                        <option value="8">August</option>
+                                        <option value="9">September</option>
+                                        <option value="10">Oktober</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                </div>
+                            </div>				
+						</div>
+					</div>					
+                </div>
             </div>
         </div>
     </div>
+</div>
 
+@endsection
+
+@section('footer')
+<style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;border-color:#ffffff;}
+    .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ffffff;}
+    .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:0px 0px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ffffff;}
+    .tg .tg-iwtr{background-color:#34cdf9;color:#ffffff;vertical-align:top;}
+    .tg .tg-yzt1{background-color:#efefef;vertical-align:top}
+    .tg .tg-cxkv{background-color:#ffffff}
+    .tg .tg-bsv2{background-color:#efefef}
+    .tg .tg-3we0{background-color:#ffffff;vertical-align:top}
+    .tg .tg-yw4l{vertical-align:top}
+    @media all and (max-width: 479px) {
+      table,
+      thead,
+      tbody,
+      th,
+      td,
+      tr {
+        display: block	;
+       
+      }
+    </style>
 @endsection

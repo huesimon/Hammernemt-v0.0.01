@@ -37,9 +37,7 @@ Route::get('/shift', 'ShiftController@index');
 
 Route::get('/shift/all', ['uses' =>'ShiftController@all', 'as'=>'allShifts']);
 
-
 Route::get('/shift/{id}', ['uses' =>'ShiftController@show', 'as'=>'showShift']);
-
 
 Route::get('/shift/release/{id}', 'ShiftController@releaseInfo');
 
@@ -49,10 +47,8 @@ Route::get('/tradelist', ['uses' =>'ShiftController@tradeList', 'as'=>'tradeList
 
 Route::get('/accept/{id}', ['uses' =>'ShiftController@acceptTrade', 'as'=>'acceptTrade']);
 
-Route::get('user/mystamps/{id}', ['uses' =>'UserController@myStamps', 'as'=>'myStamps']);
-
 Route::get('user/stamp/{id}', ['uses' =>'UserStampController@index', 'as'=>'stampIndex']);
-Route::post('user/stamp/{id}', ['uses' =>'UserStampController@create', 'as'=>'stampCreate']);
 
+Route::post('user/stamp/{id}', ['uses' =>'UserStampController@create', 'as'=>'stampCreate']);
 
 Route::get('user/mystamps/{id}/{month}', ['uses' =>'UserController@selectMonth', 'as'=>'myStamps']);

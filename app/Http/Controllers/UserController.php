@@ -22,7 +22,6 @@ class UserController extends Controller
         //
     }
 
-
     /**
      *
      * Getting stamps from one user
@@ -38,19 +37,19 @@ class UserController extends Controller
     }
 
 
-    public function selectMonth($id,$month)
-    {
+    public function selectMonth($id,$month){
 
         $myStamps = UserStamp::myStamps($id)->byMonth($month)->byYear()->get();
 
-
         return view('user.mystamps',compact('myStamps'));
     }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return Response
      */
+
     public function create()
     {
         //
@@ -62,8 +61,8 @@ class UserController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
-    {
+
+    public function store(Request $request){
         //
     }
 
@@ -73,8 +72,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
-    {
+
+    public function show($id){
         //
     }
 
@@ -84,8 +83,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
-    {
+
+    public function edit($id){
         //
     }
 
@@ -96,8 +95,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
-    {
+
+    public function update(Request $request, $id){
         //
     }
 
@@ -107,8 +106,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
-    {
+
+    public function destroy($id){
         //
     }
 }
