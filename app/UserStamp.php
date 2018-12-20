@@ -51,18 +51,18 @@ class UserStamp extends Model
         return $query->whereYear('start_time', '=', $year);
 
 	}
-	  public function getUserName() {
-		  $user = User::find($this->user_id);
-		  return $user->name;
+	public function getUserName() {
+		$user = User::find($this->user_id);
+		return $user->name;
 	}
   
-	  public function getPayableHours() {
-      $startTime = Carbon::parse($this->start_time);
-      $endTime = Carbon::parse($this->end_time);
-      $diffInMinutes = $startTime->diffInMinutes($endTime);
-      $payableMinutes = $diffInMinutes - $this->pause;
-      $payableHours = $payableMinutes / 60; 
-      return $payableHours;
+	public function getPayableHours() {
+	$startTime = Carbon::parse($this->start_time);
+	$endTime = Carbon::parse($this->end_time);
+	
+	$diffInMinutes = $startTime->diffInMinutes($endTime);
+	$payableHours = date('H:i', mktime(0, $diffInMinutes));
+	return $payableHours;	
 	}
 
 
