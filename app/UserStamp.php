@@ -9,6 +9,7 @@ class UserStamp extends Model
 {
 
     public function scopeUnfinishedStamp($query){
+        
         return $query->where('end_time', '=', null)
         ->where('user_id', '=', Auth::user()->id)
         ->where('start_time', '!=', null);
