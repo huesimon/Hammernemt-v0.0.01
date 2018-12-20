@@ -15,9 +15,17 @@ Route::get('/', ['uses' =>'HomeController@index', 'as'=>'home']);
 Auth::routes();
 
 Route::get('/admin', 'AdminController@index');
+//Shift trading routes
 Route::get('/admin/tradelist', ['uses' =>'AdminController@tradeList', 'as'=>'adminTradeList']);
 Route::get('/admin/accept/{id}', ['uses' =>'AdminController@acceptTrade', 'as'=>'adminAcceptTrade']);
 Route::get('/admin/decline/{id}', ['uses' =>'AdminController@declineTrade', 'as'=>'adminDeclineTrade']);
+
+//Userstamp approval routes
+
+Route::get('/admin/userstamps', ['uses' =>'AdminController@userStampsList', 'as'=>'adminUserStampsList']);
+Route::get('/admin/userstamps/accept/{id}', ['uses' =>'AdminController@acceptUserStamps', 'as'=>'adminAcceptUserStamp']);
+Route::get('/admin/userstamps/decline/{id}', ['uses' =>'AdminController@declineUserStamp', 'as'=>'adminDeclineUserStamp']);
+
 Route::get('/admin/shift/create', ['uses' =>'AdminController@createShiftView', 'as'=>'adminCreateShiftView']);
 Route::post('/admin/shift/create', ['uses' =>'AdminController@createShift', 'as'=>'adminCreateShift']);
 

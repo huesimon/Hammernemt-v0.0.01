@@ -41,8 +41,13 @@
 
 
 				<a href="{{ route('adminTradeList') }}" class="btn btn-danger btn-lg btn-block">
-				Andmodninger <span class="badge badge-light"> {{ $shiftNeedApproval->count() }}</span>
+					Andmodninger <span class="badge badge-light"> {{ $shiftNeedApproval->count() }}</span>
 				</a>
+				
+				<a href="{{ route('adminUserStampsList') }}" class="btn btn-danger btn-lg btn-block">
+					Godkend timer <span class="badge badge-light"> 1 </span>
+				</a>
+					
 					
 				@endif
                 </div>
