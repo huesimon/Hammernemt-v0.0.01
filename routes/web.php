@@ -22,7 +22,7 @@ Route::get('/admin/decline/{id}', ['uses' =>'AdminController@declineTrade', 'as'
 
 //Userstamp approval routes
 Route::get('/admin/userstamps', ['uses' =>'AdminController@userStampsList', 'as'=>'adminUserStampsList']);
-Route::get('/admin/userstamps/accept/{id}', ['uses' =>'AdminController@approveUserStamps', 'as'=>'adminApproveUserStamp']);
+Route::get('/admin/userstamps/accept/{id}', ['uses' =>'AdminController@approveUserStamp', 'as'=>'adminApproveUserStamp']);
 Route::get('/admin/userstamps/decline/{id}', ['uses' =>'AdminController@rejectUserStamp', 'as'=>'adminRejectUserStamp']);
 
 Route::get('/admin/shift/create', ['uses' =>'AdminController@createShiftView', 'as'=>'adminCreateShiftView']);
