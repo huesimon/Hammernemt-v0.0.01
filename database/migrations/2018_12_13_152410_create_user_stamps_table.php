@@ -16,9 +16,12 @@ class CreateUserStampsTable extends Migration
         Schema::create('user_stamps', function (Blueprint $table) {
 			$table->increments('id');
 			$table->datetime('start_time');
-			$table->datetime('end_time')->nullable();
+            $table->datetime('end_time')->nullable();
+            $table->datetime('original_start_time');
+			$table->datetime('original_end_time')->nullable();
 			$table->integer('pause')->default(30);
-			$table->boolean('approved')->default(0);
+			$table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+			$table->boolean('edited')->default(0);
             $table->timestamps();
         });
     }

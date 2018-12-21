@@ -46,6 +46,7 @@ class UserStampController extends Controller
             $userStamp = UserStamp::unfinishedStamp()->first();
 
             $userStamp->end_time = Carbon::now();
+            $userStamp->original_end_time = Carbon::now();
 
             $userStamp->pause = $pause;
 
@@ -58,6 +59,7 @@ class UserStampController extends Controller
             $userStamp = new UserStamp;
 
             $userStamp->start_time = Carbon::now();
+            $userStamp->original_start_time = Carbon::now();
 
             $userStamp->user_id = $id;
 

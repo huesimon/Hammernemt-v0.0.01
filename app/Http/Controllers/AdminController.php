@@ -114,4 +114,20 @@ class AdminController extends Controller
 		return view('admin.userstamp.approval', compact('userStamps'));
 	}
 
+	public function approveUserStamp($userStampId){
+		$userStamp = UserStamp::find($userStampId);
+		//Set the userStamp to approved
+		$userStamp->status = 'Approved';
+		$userStamp->save();
+		session()->flash('message', 'Du har nu godkendt ' . ' INDSÆT NAVN '  . 'stempling');
+		return redirect()->back();
+	}
+
+	public function rejectUserStamp($userStampId) {
+		$userStamp = UserStamp::find($userStampId);
+		$userStamp->status = 'Rejected';
+		$userStamp->save();
+		session()->flash('message', 'Du har nu AFVIST stemplingen for ' . 'navn');
+		return redirect()->back();
+	}
 }

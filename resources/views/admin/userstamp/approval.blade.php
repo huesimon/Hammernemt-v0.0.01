@@ -42,8 +42,8 @@
 								</tbody>
 							  </table>
 				
-							<a href={{route('adminAcceptUserStamp', ['id' => $stamp->id] )}} class="btn btn-success"> Godkend </a>
-							<a href={{route('adminDeclineUserStamp', ['id' => $stamp->id] )}} class="btn btn-danger"> Afvis </a>
+							<a href={{route('adminApproveUserStamp', ['id' => $stamp->id] )}} class="btn btn-success"> Godkend </a>
+							<a href={{route('adminRejectUserStamp', ['id' => $stamp->id] )}} class="btn btn-danger"> Afvis </a>
 						</div>
 					</div>
 					@endforeach

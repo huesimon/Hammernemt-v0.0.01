@@ -33,8 +33,12 @@
                                         <td class="tg-yzt1"> <strong> Start: </strong> {{$myStamp->getStartTimeFormatted("H:i")}} </td>
                                         <td class="tg-yzt1"> <strong> Slut: </strong> {{$myStamp->getEndTimeFormatted("H:i")}} </td>
                                         <td class="tg-yzt1"> <strong> Pause: </strong> {{$myStamp->pause}} </td>
-                                        <td class="tg-yzt1"> <strong> Godkendt: </strong> {{$myStamp->approved}} </td>
+                                        <td class="tg-yzt1"> <strong> Status: </strong> {{$myStamp->status}} </td>
+                                        @if($myStamp->status != 'rejected')
                                         <td class="tg-yzt1"> <strong> Total: </strong> {{$myStamp->getPayableHours()}} </td>
+                                        @else 
+                                        <td class="tg-yzt1"> <strong> Total: </strong> <p style="color: red"> 00:00 </p> </td>
+                                        @endif
                                     </tr>
 
                                     @endforeach
