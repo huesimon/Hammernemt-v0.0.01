@@ -21,7 +21,7 @@ class UserStamp extends Model
     
 	public function scopeWaitingApproval($query){
         
-        return $query->where('approved', '=', 0)
+        return $query->where('status', '=', 'pending')
         ->where('end_time', '!=', null);
     }
 
