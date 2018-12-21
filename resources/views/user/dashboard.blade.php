@@ -45,7 +45,7 @@
 				</a>
 				
 				<a href="{{ route('adminUserStampsList') }}" class="btn btn-danger btn-lg btn-block">
-					Godkend timer <span class="badge badge-light"> 1 </span>
+					Godkend timer <span class="badge badge-light"> {{ $stampsNeedApproval->count() }} </span>
 				</a>
 					
 					

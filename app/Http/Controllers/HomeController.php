@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ShiftTrade;
+use App\UserStamp;
 
 class HomeController extends Controller
 {
@@ -27,8 +28,10 @@ class HomeController extends Controller
 		//if a user is logged in, let them see the dashboard
 		$tradeableShifts = ShiftTrade::active()->noNewOWner()->get();
 		//shiftNeedAppoval is only for admin
-		$shiftNeedApproval = ShiftTrade::active()->waitingApproval()->get();
+		$shiftNeedApproval = ShiftTrade::active()->waitingApproval()->get();	
 
-        return view('user.dashboard', compact('tradeableShifts', 'shiftNeedApproval'));
+		$stampsNeedApproval = UserStamp::waitingApproval()->get();
+
+        return view('user.dashboard', compact('tradeableShifts', 'shiftNeedApproval', 'stampsNeedApproval'));
     }
 }

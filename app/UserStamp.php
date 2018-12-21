@@ -8,12 +8,16 @@ use App\User;
 class UserStamp extends Model
 {
 
+	public function scopeActive($query) {
+		return $query->where('active', '=', 1);
+	}
+	
     public function scopeUnfinishedStamp($query){
         
         return $query->where('end_time', '=', null)
         ->where('user_id', '=', Auth::user()->id)
         ->where('start_time', '!=', null);
-    }
+	}
     
 	public function scopeWaitingApproval($query){
         
