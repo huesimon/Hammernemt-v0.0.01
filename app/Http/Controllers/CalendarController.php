@@ -43,6 +43,7 @@ class CalendarController extends Controller
 			'weekends' => true,
 			'minTime' => '06:00:00',
 			'maxTime' => '24:00:00',
+			'height' => 885,
 		]);
 		return view('user.calendar.index', compact('calendar'));
 	
@@ -82,6 +83,7 @@ class CalendarController extends Controller
 			'weekends' => true,
 			'minTime' => '06:00:00',
 			'maxTime' => '24:00:00',
+			'height' => 885,
 		]);
 		return view('user.calendar.index', compact('calendar'));
 	
