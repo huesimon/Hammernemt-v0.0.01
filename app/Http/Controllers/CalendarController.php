@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Shift;
+use Carbon\Carbon;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
+use Spatie\GoogleCalendar\GoogleCalendarFacade as GoogleCalendar;
+use Spatie\GoogleCalendar\Event as Event;
+
 
 
 class CalendarController extends Controller
@@ -87,5 +91,17 @@ class CalendarController extends Controller
 		]);
 		return view('user.calendar.index', compact('calendar'));
 	
+	}
+	public function test(){
+		// $eventId = Event::get();
+		// return $eventId;
+		$event = new Event;
+
+		$event->name = 'Event from LARAVEL';
+		$event->startDateTime = Carbon::now()->addDays(1);
+		$event->endDateTime = Carbon::now()->addDays(2);
+
+		$event->save();
+		return $event;
 	}
 }

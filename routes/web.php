@@ -14,6 +14,7 @@ Route::get('/', ['uses' =>'HomeController@index', 'as'=>'home']);
 
 Auth::routes();
 
+Route::get('/test', 'CalendarController@test');
 Route::get('/admin', 'AdminController@index');
 //Shift trading routes
 Route::get('/admin/tradelist', ['uses' =>'AdminController@tradeList', 'as'=>'adminTradeList']);
