@@ -13,7 +13,7 @@
 
 Route::get('/', ['uses' =>'HomeController@index', 'as'=>'home']);
 Route::get('/telegram', ['uses' =>'TelegramController@index', 'as'=>'telegram']);
-Route::post('/' . env('SECRECT_WEBHOOK_KEY') . '/webhook', ['uses' =>'TelegramController@webhook', 'as'=>'telegramWebhook']);
+Route::post('/S3jUagh2YaWgj4yYPXQ8GXkGfPSEGne6/webhook', ['uses' =>'TelegramController@webhook', 'as'=>'telegramWebhook']);
 
 Auth::routes();
 
