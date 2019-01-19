@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', ['uses' =>'HomeController@index', 'as'=>'home']);
+Route::get('/telegram', ['uses' =>'TelegramController@index', 'as'=>'telegram']);
+Route::get('/' . env('SECRECT_WEBHOOK_KEY') . '/webhook', ['uses' =>'TelegramController@webhook', 'as'=>'telegramWebhook']);
 
 Auth::routes();
 
