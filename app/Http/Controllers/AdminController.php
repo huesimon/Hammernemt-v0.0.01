@@ -7,6 +7,7 @@ use App\ShiftTrade;
 use App\Shift;
 use App\User;
 use App\UserStamp;
+use Telegram\Bot\Api;
 class AdminController extends Controller
 {
 	public function tradeList()
@@ -23,6 +24,12 @@ class AdminController extends Controller
 		//Set the ShiftTrade to approved
 		$shiftTrade->approved = 1;
 		$shiftTrade->save();
+		//Telegram debug
+		$telegram = new Api();
+		$telegram->sendMessage([
+			'chat_id' => '-386115157',
+			'text' => '' . \Auth::user()->getName() . ' har har nu accepteret byttet mellem... '
+		]);
 		session()->flash('message', 'Du har nu accepteret byttet mellem ' . ' INDSÆT NANV'  . ' og ' . 'INDSÆT NAVN2');
 		return redirect()->route('adminTradeList');
 	}
@@ -33,6 +40,12 @@ class AdminController extends Controller
 		$newOwner = User::find($shiftTrade->new_owner_id);
 		$shiftTrade->new_owner_id = null;
 		$shiftTrade->save();
+		//Telegram debug
+		$telegram = new Api();
+		$telegram->sendMessage([
+			'chat_id' => '-386115157',
+			'text' => '' . \Auth::user()->getName() . ' har har nu AFVIST byttet mellem... '
+		]);
 		session()->flash('message', 'Du har nu AFVIST byttet mellem ' . $originalOwner->name . ' og ' . $newOwner->name);
 		return redirect()->back();
 	}
@@ -55,7 +68,12 @@ class AdminController extends Controller
 		];
 		
 		$this->createShiftInterval($days, $request);
-		
+		//Telegram debug
+		$telegram = new Api();
+		$telegram->sendMessage([
+			'chat_id' => '-386115157',
+			'text' => '' . \Auth::user()->getName() . ' har nu oprettet en vagt. '
+		]);
 		session()->flash('message', 'Vagt oprettet');
 		return redirect()->back();
 		}
@@ -111,6 +129,12 @@ class AdminController extends Controller
 		}
 		public function userStampsList() {
 		$userStamps = UserStamp::waitingApproval()->get();
+		//Telegram debug
+		$telegram = new Api();
+		$telegram->sendMessage([
+			'chat_id' => '-386115157',
+			'text' => '' . \Auth::user()->getName() . ' ser på userstamps der mangler godkendelse '
+		]);
 		return view('admin.userstamp.approval', compact('userStamps'));
 	}
 
@@ -119,6 +143,12 @@ class AdminController extends Controller
 		//Set the userStamp to approved
 		$userStamp->status = 'Approved';
 		$userStamp->save();
+		//Telegram debug
+		$telegram = new Api();
+		$telegram->sendMessage([
+			'chat_id' => '-386115157',
+			'text' => '' . \Auth::user()->getName() . ' har har nu godkendt en stempling '
+		]);
 		session()->flash('message', 'Du har nu godkendt ' . ' INDSÆT NAVN '  . 'stempling');
 		return redirect()->back();
 	}
@@ -127,6 +157,12 @@ class AdminController extends Controller
 		$userStamp = UserStamp::find($userStampId);
 		$userStamp->status = 'Rejected';
 		$userStamp->save();
+		//Telegram debug
+		$telegram = new Api();
+		$telegram->sendMessage([
+			'chat_id' => '-386115157',
+			'text' => '' . \Auth::user()->getName() . ' har har nu AFVIST en stempling '
+		]);
 		session()->flash('message', 'Du har nu AFVIST stemplingen for ' . 'navn');
 		return redirect()->back();
 	}

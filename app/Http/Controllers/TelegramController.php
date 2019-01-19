@@ -13,7 +13,6 @@ class TelegramController extends Controller
 			'chat_id' => '151336314',
 			'text' => 'webhook'
 		]);
-		dd($telegram->getMe());
 	}
 	public function webhook() {
 		$telegram = new Telegram;

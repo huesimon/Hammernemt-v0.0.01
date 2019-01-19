@@ -33,7 +33,7 @@ Route::post('/admin/shift/create', ['uses' =>'AdminController@createShift', 'as'
 
 Route::get('/calendar', ['uses' =>'CalendarController@index', 'as'=>'calendar']);
 
-Route::get('/calendar/mine/{userid}', ['uses' =>'CalendarController@myCalendar', 'as'=>'myCalendar']);
+Route::get('/calendar/mine/{user}', ['uses' =>'CalendarController@myCalendar', 'as'=>'myCalendar']);
 
 Route::get('/shift', 'ShiftController@index');
 

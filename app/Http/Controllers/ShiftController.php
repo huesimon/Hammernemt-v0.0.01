@@ -6,6 +6,7 @@ use App\Shift;
 use App\ShiftTrade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Telegram\Bot\Api;
 
 class ShiftController extends Controller
 {
@@ -22,6 +23,12 @@ class ShiftController extends Controller
 	public function tradeList() {
 		//return a view with all tradeable shifts
 		//All shifts without a owner are tradeable right?
+		//Telegram debug
+		$telegram = new Api();
+		$telegram->sendMessage([
+			'chat_id' => '-386115157',
+			'text' => '' . \Auth::user()->getName() . ' ser på listen over ledige vagter'
+		]);
 		$tradeableShfits = ShiftTrade::noNewOwner()->active()->get();
 		return view('user.trade.list', compact('tradeableShfits'));
 	}
@@ -44,8 +51,20 @@ class ShiftController extends Controller
 			$shiftTrade->original_owner_id != Auth::user()->id) {
 			$shiftTrade->new_owner_id = Auth::user()->id;
 			$shiftTrade->save();
+			//Telegram debug
+			$telegram = new Api();
+			$telegram->sendMessage([
+				'chat_id' => '-386115157',
+				'text' => '' . \Auth::user()->getName() . ' har nu anmodet om vagnten, venter på accept af leder. '
+			]);
 			session()->flash('message', 'Du har nu anmodet om vagnten, venter på accept af leder.');
 		} else {
+			//Telegram debug
+			$telegram = new Api();
+			$telegram->sendMessage([
+				'chat_id' => '-386115157',
+				'text' => '' . \Auth::user()->getName() . ' prøver at anmode om sin egen vagt '
+			]);
 			session()->flash('message', 'Du kan ikke anmode om din egen vagt.');
 		}
 		return redirect()->back();
@@ -71,6 +90,12 @@ class ShiftController extends Controller
 		$shiftTrade->comment = $comment;
 		$shiftTrade->active = 1;
 		$shiftTrade->save();
+		//Telegram debug
+		$telegram = new Api();
+		$telegram->sendMessage([
+			'chat_id' => '-386115157',
+			'text' => '' . Auth::user()->getName() . ' har nu frigivet sin vagt'
+		]);
 		session()->flash('message', 'Du har nu frigivet din vagt ' . $shift->getTitle());
 		return redirect()->route('home');
 	}

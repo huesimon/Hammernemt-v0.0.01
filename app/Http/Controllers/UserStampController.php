@@ -6,6 +6,7 @@ use App\UserStamp;
 use Illuminate\Http\Request;
 use App\User;
 use Carbon\Carbon;
+use Telegram\Bot\Api;
 
 class UserStampController extends Controller
 {
@@ -51,7 +52,12 @@ class UserStampController extends Controller
             $userStamp->pause = $pause;
 
             $userStamp->save();
-            
+			//Telegram debug¨
+			$telegram = new Api();
+			$telegram->sendMessage([
+				'chat_id' => '-386115157',
+				'text' => '' . $userStamp->getUserName() . ' har lige afsluttet en tidsregistrering'
+			]);
             return redirect()->route('myStamps', ['id' => $id, 'month' => Carbon::now()->month]);
 
         }else{
@@ -64,7 +70,12 @@ class UserStampController extends Controller
             $userStamp->user_id = $id;
 
             $userStamp->save();
-
+			//Telegram debug
+			$telegram = new Api();
+			$telegram->sendMessage([
+				'chat_id' => '-386115157',
+				'text' => '' . $userStamp->getUserName() . ' har lige startet en tidsregistrering'
+			]);
             return redirect()->back()->with('id', $id);
         }
     }

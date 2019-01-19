@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Shift;
+use App\User;
+use Telegram\Bot\Api;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 
 
@@ -49,10 +51,10 @@ class CalendarController extends Controller
 	
 	}
 
-    public function myCalendar ($userId) {
+    public function myCalendar (User $user) {
 		$events = [];
 
-		$shifts = Shift::myShift($userId)->get();
+		$shifts = Shift::myShift($user->id)->get();
 		
 		if($shifts->count()) {
 			foreach ($shifts as $shift) {
@@ -84,6 +86,12 @@ class CalendarController extends Controller
 			'minTime' => '06:00:00',
 			'maxTime' => '24:00:00',
 			'height' => 885,
+		]);
+		//Telegram debug
+		$telegram = new Api();
+		$telegram->sendMessage([
+			'chat_id' => '-386115157',
+			'text' => '' . $user->getName() . ' ser sin kalender'
 		]);
 		return view('user.calendar.index', compact('calendar'));
 	
