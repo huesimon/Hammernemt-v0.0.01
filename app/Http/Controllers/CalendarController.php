@@ -75,9 +75,9 @@ class CalendarController extends Controller
 		
 		$calendar = Calendar::addEvents($events)->setOptions([
 			'header' => [
-				'left' => 'prev,next today',
+				'left' => 'prev,next today, myCustomButton',
 				'center' => 'title',
-				'right' => 'month,agendaWeek,agendaDay,listWeek',
+				'right' => 'month, agendaWeek, agendaDay, listWeek',
 			],
 			'defaultView' => 'agendaWeek',
 			'eventLimit' => true,
