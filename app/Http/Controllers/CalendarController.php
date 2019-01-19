@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Shift;
+use App\User;
 use Carbon\Carbon;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 use Spatie\GoogleCalendar\Event as Event;
@@ -51,11 +52,10 @@ class CalendarController extends Controller
 	
 	}
 
-    public function myCalendar ($userId) {
+    public function myCalendar (User $user) {
 		$events = [];
 
-		$shifts = Shift::myShift($userId)->get();
-		
+		$shifts = Shift::myShift($user->id)->get();
 		if($shifts->count()) {
 			foreach ($shifts as $shift) {
 				$events[] = Calendar::event(
@@ -87,11 +87,11 @@ class CalendarController extends Controller
 			'maxTime' => '24:00:00',
 			'height' => 885,
 		]);
-		return view('user.calendar.index', compact('calendar'));
+		return view('user.calendar.index', compact('calendar', 'user'));
 	
 	}
-	public function exportToICS($usernamePrefix = null){
-		$fileName = $usernamePrefix . "hammernemt";
+	public function exportToICS(?User $user){
+		$fileName = $user->getNameWithoutSpaces() . "_hammernemt.ics";
 	
 		$icsOutput = 
 "BEGIN:VCALENDAR
@@ -101,7 +101,7 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:Test Calendar
 X-WR-TIMEZONE:Europe/Copenhagen";
-		$shifts = $shifts = Shift::get();
+		$shifts = Shift::myShift($user->id)->get();
 		foreach ($shifts as $shift) {
 		$icsOutput = $icsOutput .
 "
@@ -122,7 +122,7 @@ END:VEVENT";
 		$icsOutput = $icsOutput . PHP_EOL . "END:VCALENDAR";
 		header("Content-type: text/ics");
 		header("Cache-Control: no-store, no-cache");
-		header('Content-Disposition: attachment; filename="hammernemt.ics"');
+		header('Content-Disposition: attachment; filename="' . $fileName . '"');
 		echo $icsOutput;
 		$file = fopen('php://output','w');
 	}

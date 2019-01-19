@@ -14,7 +14,6 @@ Route::get('/', ['uses' =>'HomeController@index', 'as'=>'home']);
 
 Auth::routes();
 
-Route::get('/test', 'CalendarController@exportToICS');
 Route::get('/admin', 'AdminController@index');
 //Shift trading routes
 Route::get('/admin/tradelist', ['uses' =>'AdminController@tradeList', 'as'=>'adminTradeList']);
@@ -31,7 +30,8 @@ Route::post('/admin/shift/create', ['uses' =>'AdminController@createShift', 'as'
 
 Route::get('/calendar', ['uses' =>'CalendarController@index', 'as'=>'calendar']);
 
-Route::get('/calendar/mine/{userid}', ['uses' =>'CalendarController@myCalendar', 'as'=>'myCalendar']);
+Route::get('/calendar/mine/{user}', ['uses' =>'CalendarController@myCalendar', 'as'=>'myCalendar']);
+Route::get('/calendar/exportCalendar/{user}', ['uses' =>'CalendarController@exportToICS', 'as'=>'exportCalendar']);
 
 Route::get('/shift', 'ShiftController@index');
 
