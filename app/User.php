@@ -45,4 +45,7 @@ class User extends Authenticatable
 		}
 		return $result;
 	}
+	public function getName() {
+		return $this->name;
+	}
 }
