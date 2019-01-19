@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Telegram\Bot\Api;
+use Telegram\Bot\Api as Telegram;
 
 class TelegramController extends Controller
 {
     public function index(){	
-		$telegram = new Api();
+		$telegram = new Telegram();
 		$telegram->sendMessage([
 			'chat_id' => '151336314',
 			'text' => 'webhook'
@@ -16,7 +16,8 @@ class TelegramController extends Controller
 		dd($telegram->getMe());
 	}
 	public function webhook() {
-		$updates = Telegram::getWebhookUpdates();
+		$telegram = new Telegram;
+		$updates = $telegram->getWebhookUpdates();
 		return 'ok';
 	} 
 }
