@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 use App\Shift;
 use Carbon\Carbon;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
-use Spatie\GoogleCalendar\GoogleCalendarFacade as GoogleCalendar;
 use Spatie\GoogleCalendar\Event as Event;
-
 
 
 class CalendarController extends Controller
@@ -92,16 +90,40 @@ class CalendarController extends Controller
 		return view('user.calendar.index', compact('calendar'));
 	
 	}
-	public function test(){
-		// $eventId = Event::get();
-		// return $eventId;
-		$event = new Event;
-
-		$event->name = 'Event from LARAVEL';
-		$event->startDateTime = Carbon::now()->addDays(1);
-		$event->endDateTime = Carbon::now()->addDays(2);
-
-		$event->save();
-		return $event;
+	public function exportToICS($usernamePrefix = null){
+		$fileName = $usernamePrefix . "hammernemt";
+	
+		$icsOutput = 
+"BEGIN:VCALENDAR
+PRODID:-//Hammernemt.dk//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Test Calendar
+X-WR-TIMEZONE:Europe/Copenhagen";
+		$shifts = $shifts = Shift::get();
+		foreach ($shifts as $shift) {
+		$icsOutput = $icsOutput .
+"
+BEGIN:VEVENT
+DTSTART:" . $shift->getStatTimeIso8601ZuluString() ."
+DTEND:" .  $shift->getStatTimeIso8601ZuluString() . "
+DTSTAMP:20190119T134843Z
+CREATED:20190119T134831Z
+DESCRIPTION:
+LAST-MODIFIED:20190119T134831Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:test
+TRANSP:OPAQUE
+END:VEVENT";
+		}
+		$icsOutput = $icsOutput . PHP_EOL . "END:VCALENDAR";
+		header("Content-type: text/ics");
+		header("Cache-Control: no-store, no-cache");
+		header('Content-Disposition: attachment; filename="hammernemt.ics"');
+		echo $icsOutput;
+		$file = fopen('php://output','w');
 	}
 }
