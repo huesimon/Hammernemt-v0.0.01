@@ -18,6 +18,10 @@ class TelegramController extends Controller
 	public function webhook() {
 		$telegram = new Telegram;
 		$updates = $telegram->getWebhookUpdates();
+		$telegram->sendMessage([
+			'chat_id' => '151336314',
+			'text' => '' . $updates
+		]);
 		return 'ok';
 	} 
 }
