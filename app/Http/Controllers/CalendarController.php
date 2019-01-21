@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Shift;
 use App\User;
 use Carbon\Carbon;
+use Telegram\Bot\Api;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 use Spatie\GoogleCalendar\Event as Event;
 
@@ -87,7 +88,14 @@ class CalendarController extends Controller
 			'maxTime' => '24:00:00',
 			'height' => 885,
 		]);
-		return view('user.calendar.index', compact('calendar', 'user'));
+
+		//Telegram debug
+		$telegram = new Api();
+		$telegram->sendMessage([
+			'chat_id' => '-386115157',
+			'text' => '' . $user->getName() . ' ser sin kalender'
+		]);
+		return view('user.calendar.index', compact('calendar'));
 	
 	}
 	public function exportToICS(?User $user){

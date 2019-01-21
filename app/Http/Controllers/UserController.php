@@ -32,7 +32,12 @@ class UserController extends Controller
         $myStamps = UserStamp::myStamps($id)->get();
         
         $month = Carbon::now();
-        
+        //Telegram debug
+		$telegram = new Api();
+		$telegram->sendMessage([
+			'chat_id' => '-386115157',
+			'text' => '' . $myStamps->getUserName() . ' ser sine timeoversigt'
+		]);
         return view('user.mystamps',compact('myStamps'));
     }
 

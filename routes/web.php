@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', ['uses' =>'HomeController@index', 'as'=>'home']);
+Route::get('/telegram', ['uses' =>'TelegramController@index', 'as'=>'telegram']);
+Route::post('/S3jUagh2YaWgj4yYPXQ8GXkGfPSEGne6/webhook', ['uses' =>'TelegramController@webhook', 'as'=>'telegramWebhook']);
 
 Auth::routes();
 
@@ -31,7 +34,9 @@ Route::post('/admin/shift/create', ['uses' =>'AdminController@createShift', 'as'
 Route::get('/calendar', ['uses' =>'CalendarController@index', 'as'=>'calendar']);
 
 Route::get('/calendar/mine/{user}', ['uses' =>'CalendarController@myCalendar', 'as'=>'myCalendar']);
+
 Route::get('/calendar/exportCalendar/{user}', ['uses' =>'CalendarController@exportToICS', 'as'=>'exportCalendar']);
+
 
 Route::get('/shift', 'ShiftController@index');
 

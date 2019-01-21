@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ShiftTrade;
 use App\UserStamp;
+use Telegram\Bot\Api;
 
 class HomeController extends Controller
 {
@@ -31,7 +32,12 @@ class HomeController extends Controller
 		$shiftNeedApproval = ShiftTrade::active()->waitingApproval()->get();	
 
 		$stampsNeedApproval = UserStamp::waitingApproval()->get();
-
+		//Telegram debug
+		$telegram = new Api();
+		$telegram->sendMessage([
+			'chat_id' => '-386115157',
+			'text' => '' . \Auth::user()->getName() . ' ser på dashboard '
+		]);
         return view('user.dashboard', compact('tradeableShifts', 'shiftNeedApproval', 'stampsNeedApproval'));
     }
 }
