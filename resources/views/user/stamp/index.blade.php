@@ -41,17 +41,19 @@
                             <form method="POST" action="{{route('stampCreate', ['id'=> $user->id])}}">
                                 @csrf
                                 @if(!isset($userStamp))
-                                <button type="submit" class="btn btn-primary">Stempling</button>
+                                <button type="submit" class="btn btn-primary">Indstempling</button>
                                 @else
-                                <select name="pause" id="pause">
-                                    <option value="Pause" selected disabled>Pause</option>
+                                Jeg har i dag holdt: <select name="pause" id="pause">
+                                    <option value="Pause" selected disabled>Vælg Pause</option>
                                     <option value="0">0</option>
                                     <option value="15">15</option>
                                     <option value="30">30</option>
                                     <option value="45">45</option>
                                     <option value="60">60</option>
-                                </select>
-                                <button type="submit" class="btn btn-danger">Stempling</button>
+                                </select> minutters pause
+                                
+                                <button type="submit" class="btn btn-danger">Udstempling</button>
+                                
                                 @endif
                                 
                             </form>
