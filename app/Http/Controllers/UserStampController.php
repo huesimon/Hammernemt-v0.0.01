@@ -81,7 +81,7 @@ class UserStampController extends Controller
 
     public function autoApprove($shift, $stamp){
        $result = false;
-        $shiftStartTime = Carbon::parse($shift->start_time);
+       $shiftStartTime = Carbon::parse($shift->start_time);
        $shiftEndTime = Carbon::parse($shift->end_time);
        $stampStartTime = Carbon::parse($stamp->start_time);
        $stampEndTime = Carbon::parse($stamp->end_time);
