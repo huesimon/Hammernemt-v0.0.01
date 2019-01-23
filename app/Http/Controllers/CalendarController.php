@@ -95,7 +95,7 @@ class CalendarController extends Controller
 			'chat_id' => '-386115157',
 			'text' => '' . $user->getName() . ' ser sin kalender'
 		]);
-		return view('user.calendar.index', compact('calendar'));
+		return view('user.calendar.index', compact('calendar', 'user'));
 	
 	}
 	public function exportToICS(?User $user){
