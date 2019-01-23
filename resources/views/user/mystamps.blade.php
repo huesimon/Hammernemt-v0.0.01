@@ -42,6 +42,11 @@
                                     </tr>
 
                                     @endforeach
+                                    <tr>
+                                        {{-- TODO: Fix this --}} 
+                                        <td> </td> <td> </td> <td> </td> <td> </td> <td> </td>
+                                            <td class="tg-yzt1"> <strong> Total Hours: {{$myStamp->getSum(Auth::User(), $month)}} </strong> </td>
+                                    </tr>
                                 </table>
                             </div>
                                   {{--  <tr>

@@ -46,7 +46,7 @@ class UserController extends Controller
 
         $myStamps = UserStamp::myStamps($id)->byMonth($month)->byYear()->get();
 
-        return view('user.mystamps',compact('myStamps'));
+        return view('user.mystamps',compact('myStamps', 'month'));
     }
 
     /**
