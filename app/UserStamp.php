@@ -79,11 +79,13 @@ class UserStamp extends Model
         return $diffInMinutes;	
     }
     //lægger alle timer sammen for en lønperiode
-    public function getSum(User $user, $month){
+    public function getSum(User $user = null, $month = null){
         $myStamps = UserStamp::myStamps($user->id)->byMonth($month)->byYear()->get();
         $sum = 0;
-        foreach($myStamps as $stamp){
-            $sum = $sum + $stamp->getPayableHoursInMin();
+        if(!is_null($myStamps)){
+           foreach($myStamps as $stamp){
+                $sum = $sum + $stamp->getPayableHoursInMin();
+            }
         }
         $sum = date('H:i', mktime(0, $sum));
         return $sum;

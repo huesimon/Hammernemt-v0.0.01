@@ -53,4 +53,6 @@ Route::get('user/stamp/{id}', ['uses' =>'UserStampController@index', 'as'=>'stam
 
 Route::post('user/stamp/{id}', ['uses' =>'UserStampController@create', 'as'=>'stampCreate']);
 
-Route::get('user/mystamps/{id}/{month}', ['uses' =>'UserController@selectMonth', 'as'=>'myStamps']);
+Route::get('user/mystamps/{id}/{month}', ['uses' =>'UserStampController@selectMonth', 'as'=>'myStamps']);
+
+Route::post('user/mystamps/', ['uses' =>'UserStampController@selectMonthPost', 'as'=>'myStampsPost']);

@@ -41,14 +41,6 @@ class UserController extends Controller
         return view('user.mystamps',compact('myStamps'));
     }
 
-
-    public function selectMonth($id,$month){
-
-        $myStamps = UserStamp::myStamps($id)->byMonth($month)->byYear()->get();
-
-        return view('user.mystamps',compact('myStamps', 'month'));
-    }
-
     /**
      * Show the form for creating a new resource.
      *
