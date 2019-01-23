@@ -45,7 +45,6 @@ class HomeController extends Controller
 		$user = \Auth::user();
 		$deparment = CompanyDepartment::find($user->department_id);
 		$company = Company::find($user->company_id);
-        //dd($myDepartment,$myCompany);
 		return view('user.dashboard', compact('tradeableShifts', 'shiftNeedApproval', 'stampsNeedApproval', 'company', 'deparment'));
     }
 }
