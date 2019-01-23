@@ -151,8 +151,8 @@ class AdminController extends Controller
 	public function createSingleShift($startTime, $request) {
 		// TODO: Refactor these
 		$userId = $request->input('inputUserId');
-		$intervalStart = $request->input('inputStartDate');
-		$intervalEnd = $request->input('inputEndDate');
+		$startDate = $request->input('inputStartDate');
+		$endDate = $request->input('inputEndDate');
 		$shiftStartTime = $request->input('inputStartTime') . ':00';
 		$shiftEndTime = $request->input('inputEndTime') . ':00';
 		if (is_null($userId)) {
@@ -160,9 +160,9 @@ class AdminController extends Controller
 			$shift = new Shift;
 			$shift->user_id = null;
 			$shift->tradeable = 1;
-			$shift->date = $startTime;
-			$shift->start_time = $startTime;
-			$shift->end_time = $startTime;
+			$shift->date = $startDate ." " . $shiftStartTime;
+			$shift->start_time = $startDate ." " . $shiftStartTime;
+			$shift->end_time = $startDate ." " . $shiftEndTime;
 			$shift->save();
 
 			$shiftTrade = new ShiftTrade;
@@ -172,9 +172,9 @@ class AdminController extends Controller
 			
 			$shift = new Shift;
 			$shift->user_id = $userId;
-			$shift->date = $startTime;
-			$shift->start_time = $startTime;
-			$shift->end_time = $startTime;
+			$shift->date = $startDate ." " . $shiftStartTime;
+			$shift->start_time = $startDate ." " . $shiftStartTime;
+			$shift->end_time = $startDate ." " . $shiftEndTime;
 			$shift->save();
 		}
 	}
