@@ -16,6 +16,7 @@ class CompanyDepartmentSeeder extends Seeder
 			'company_id' => rand(1,3),
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now(),
+            'name'       => 'Elever'
 		]);
 		}
     }

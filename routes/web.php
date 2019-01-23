@@ -35,11 +35,14 @@ Route::get('/calendar', ['uses' =>'CalendarController@index', 'as'=>'calendar'])
 
 Route::get('/calendar/mine/{user}', ['uses' =>'CalendarController@myCalendar', 'as'=>'myCalendar']);
 
+Route::get('/calendar/exportCalendar/{user}', ['uses' =>'CalendarController@exportToICS', 'as'=>'exportCalendar']);
+
+
 Route::get('/shift', 'ShiftController@index');
 
 Route::get('/shift/all', ['uses' =>'ShiftController@all', 'as'=>'allShifts']);
 
-Route::get('/shift/{id}', ['uses' =>'ShiftController@show', 'as'=>'showShift']);
+Route::get('/shift/{shift}', ['uses' =>'ShiftController@show', 'as'=>'showShift']);
 
 Route::get('/shift/release/{id}', 'ShiftController@releaseInfo');
 

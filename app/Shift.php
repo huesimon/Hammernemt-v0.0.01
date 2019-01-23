@@ -58,4 +58,32 @@ class Shift extends Model
 		$endTime = Carbon::parse($this->end_time)->format('H:i:s');
 		return 'Dato: ' . $date . '<br>' . 'Tidspunkt: '. $startTime . ' - ' . $endTime;
 	}
+	
+	/**
+     * Get start time in Iso format 
+     *
+     *
+     * @return $startTime
+     */
+	public function getStatTimeIso8601ZuluString() {
+		$startTime = Carbon::createFromFormat('Y-m-d H:i:s', $this->start_time);
+		$startTime = $startTime->toIso8601ZuluString();
+		$startTime = str_replace("-","", $startTime);
+		$startTime = str_replace(":","", $startTime);
+		return $startTime;
+	}
+	
+	/**
+     * Get end time in Iso format 
+     *
+     *
+     * @return $endTime
+     */
+	public function getEndTimeIso8601ZuluString() {
+		$endTime = Carbon::createFromFormat('Y-m-d H:i:s', $this->end_time);
+		$endTime = $endTime->toIso8601ZuluString();
+		$endTime = str_replace("-","", $endTime);
+		$endTime = str_replace(":","", $endTime);
+		return $endTime;
+	}
 }

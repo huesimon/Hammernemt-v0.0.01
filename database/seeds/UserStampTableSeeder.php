@@ -23,15 +23,25 @@ class UserStampTableSeeder extends Seeder
             $random_end = random_int(-10,10);
             $startTime = Carbon::now()->addDays($random)->addMinutes($random_start);
             $endTime = Carbon::now()->addDays($random)->addHours(3)->addMinutes($random_end);
+            $randonStatus = random_int(0,2);
+            if($randonStatus == 0){
+                $status = 'pending';
+            }elseif ($randonStatus == 1){
+                $status = 'approved';
+            }elseif ($randonStatus == 2){
+                $status = 'rejected';
+            }
 			DB::table('user_stamps')->insert([
 				'start_time' => $startTime,
 				'end_time' => $endTime,
 				'pause' => 15,
-				'approved' => random_int(0,1),
+				'status' => $status,
 				'shift_id' => random_int(104,194),
 				'user_id' => random_int(1, 100),
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now(),
+                'original_start_time'=> $startTime,
+                'original_end_time'=>$endTime
 			]);
 		}
     }

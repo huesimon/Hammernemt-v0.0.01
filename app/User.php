@@ -45,7 +45,20 @@ class User extends Authenticatable
 		}
 		return $result;
 	}
+
+	public function getNameWithoutSpaces() {
+		return str_replace(" ","", $this->name);
+	}
+
 	public function getName() {
 		return $this->name;
 	}
+    public function scopeMyCompany($query, $id=null){
+
+     return $query ->where('company_id', '=', $id);
+    }
+    public function scopeMyDepartment($query, $id=null){
+        return $query->where('department_id', '=', $id);
+    }
+
 }
