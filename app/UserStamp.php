@@ -68,7 +68,26 @@ class UserStamp extends Model
 	    $payableHours = date('H:i', mktime(0, $diffInMinutes));
     
         return $payableHours;	
-	}
+    }
+    public function getPayableHoursInMin() {
+    
+        $startTime = Carbon::parse($this->start_time);
+        $endTime = Carbon::parse($this->end_time);
+        
+        $diffInMinutes = $startTime->diffInMinutes($endTime);
+	        
+        return $diffInMinutes;	
+    }
+    //lægger alle timer sammen for en lønperiode
+    public function getSum(User $user, $month){
+        $myStamps = UserStamp::myStamps($user->id)->byMonth($month)->byYear()->get();
+        $sum = 0;
+        foreach($myStamps as $stamp){
+            $sum = $sum + $stamp->getPayableHoursInMin();
+        }
+        $sum = date('H:i', mktime(0, $sum));
+        return $sum;
+    }
 
     public function getStartTimeFormatted($format){
 
