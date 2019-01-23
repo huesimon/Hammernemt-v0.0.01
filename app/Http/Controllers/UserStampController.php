@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\UserStamp;
+use App\Shift;
 use Illuminate\Http\Request;
 use App\User;
 use Carbon\Carbon;
@@ -41,16 +42,14 @@ class UserStampController extends Controller
     {
 
         if(!is_null(UserStamp::unfinishedStamp()->first())){
-
             $pause = $request->input('pause');
-
             $userStamp = UserStamp::unfinishedStamp()->first();
-
-            $userStamp->end_time = Carbon::now();
-            $userStamp->original_end_time = Carbon::now();
-
+            $userShift = Shift::byDate($userStamp->id)->first();
+            $userStamp->end_time = Carbon::now()->format('Y:m:d H:i:s');
+            $userStamp->original_end_time = Carbon::now()->format('Y:m:d H:i:s');
             $userStamp->pause = $pause;
-
+            
+            $autoApprove = $this->autoApprove($userShift, $userStamp);
             $userStamp->save();
 			//Telegram debug¨
 			$telegram = new Api();
@@ -78,6 +77,22 @@ class UserStampController extends Controller
 			]);
             return redirect()->back()->with('id', $id);
         }
+    }
+
+    public function autoApprove($shift, $stamp){
+       $result = false;
+       $shiftStartTime = Carbon::parse($shift->start_time);
+       $shiftEndTime = Carbon::parse($shift->end_time);
+       $stampStartTime = Carbon::parse($stamp->start_time);
+       $stampEndTime = Carbon::parse($stamp->end_time);
+       $startDiffInMin = $shiftStartTime->diffInMinutes($stampStartTime);
+       $endDiffInMin = $shiftEndTime->diffInMinutes($stampEndTime);
+       if($startDiffInMin <= 10 && $endDiffInMin <= 10){
+            $result = true;
+            $stamp->status = 'approved';
+           // $stamp->save();
+        }
+        return $result;
     }
 
     /**
