@@ -41,14 +41,6 @@ class UserController extends Controller
         return view('user.mystamps',compact('myStamps'));
     }
 
-    public function getCompany(){
-
-
-
-        return view('user.dashboard',compact);
-    }
-
-
     public function selectMonth($id,$month){
 
         $myStamps = UserStamp::myStamps($id)->byMonth($month)->byYear()->get();
