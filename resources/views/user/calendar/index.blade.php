@@ -27,4 +27,5 @@
 		</div>					
 	</div>
 </div>
+<a class="btn btn-primary button" href="{{route('exportCalendar', ['user' => $user]  )}}">EXPORT</a>
 @endsection

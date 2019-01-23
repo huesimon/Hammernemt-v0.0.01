@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Shift;
 use App\User;
+use Carbon\Carbon;
 use Telegram\Bot\Api;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
+use Spatie\GoogleCalendar\Event as Event;
 
 
 class CalendarController extends Controller
@@ -55,7 +57,6 @@ class CalendarController extends Controller
 		$events = [];
 
 		$shifts = Shift::myShift($user->id)->get();
-		
 		if($shifts->count()) {
 			foreach ($shifts as $shift) {
 				$events[] = Calendar::event(
@@ -75,9 +76,9 @@ class CalendarController extends Controller
 		
 		$calendar = Calendar::addEvents($events)->setOptions([
 			'header' => [
-				'left' => 'prev,next today',
+				'left' => 'prev,next today, myCustomButton',
 				'center' => 'title',
-				'right' => 'month,agendaWeek,agendaDay,listWeek',
+				'right' => 'month, agendaWeek, agendaDay, listWeek',
 			],
 			'defaultView' => 'agendaWeek',
 			'eventLimit' => true,
@@ -87,6 +88,7 @@ class CalendarController extends Controller
 			'maxTime' => '24:00:00',
 			'height' => 885,
 		]);
+
 		//Telegram debug
 		$telegram = new Api();
 		$telegram->sendMessage([
@@ -95,5 +97,41 @@ class CalendarController extends Controller
 		]);
 		return view('user.calendar.index', compact('calendar'));
 	
+	}
+	public function exportToICS(?User $user){
+		$fileName = $user->getNameWithoutSpaces() . "_hammernemt.ics";
+	
+		$icsOutput = 
+"BEGIN:VCALENDAR
+PRODID:-//Hammernemt.dk//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Test Calendar
+X-WR-TIMEZONE:Europe/Copenhagen";
+		$shifts = Shift::myShift($user->id)->get();
+		foreach ($shifts as $shift) {
+		$icsOutput = $icsOutput .
+"
+BEGIN:VEVENT
+DTSTART:" . $shift->getStatTimeIso8601ZuluString() ."
+DTEND:" .  $shift->getStatTimeIso8601ZuluString() . "
+DTSTAMP:20190119T134843Z
+CREATED:20190119T134831Z
+DESCRIPTION:
+LAST-MODIFIED:20190119T134831Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:test
+TRANSP:OPAQUE
+END:VEVENT";
+		}
+		$icsOutput = $icsOutput . PHP_EOL . "END:VCALENDAR";
+		header("Content-type: text/ics");
+		header("Cache-Control: no-store, no-cache");
+		header('Content-Disposition: attachment; filename="' . $fileName . '"');
+		echo $icsOutput;
+		$file = fopen('php://output','w');
 	}
 }

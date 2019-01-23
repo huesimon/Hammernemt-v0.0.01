@@ -45,7 +45,13 @@ class User extends Authenticatable
 		}
 		return $result;
 	}
+
+	public function getNameWithoutSpaces() {
+		return str_replace(" ","", $this->name);
+	}
+
 	public function getName() {
 		return $this->name;
 	}
+
 }
