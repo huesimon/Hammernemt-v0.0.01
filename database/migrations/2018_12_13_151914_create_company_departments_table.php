@@ -16,6 +16,7 @@ class CreateCompanyDepartmentsTable extends Migration
         Schema::create('company_departments', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('name');
         });
     }
 
