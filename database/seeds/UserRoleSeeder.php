@@ -12,6 +12,11 @@ class UserRoleSeeder extends Seeder
      */
     public function run()
     {
+		DB::table('user_roles')->insert([
+			'type' => 'admin',
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now(),
+		]);
         for ($i=1; $i <= 3; $i++) { 
 			DB::table('user_roles')->insert([
 			'type' => 'RoleType' . $i,
