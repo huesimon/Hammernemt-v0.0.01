@@ -20,13 +20,13 @@ class UsersTableSeeder extends Seeder
 		'name' => 'Simon Rasmussen',
 		'email' => 'simon@simon.dk',
 		'active' => 1,
-		'company_id' => random_int(1,3),
-		'department_id' => random_int(1,3),
+		'company_id' => 1,
+		'department_id' => 1,
 		'password' => Hash::make('password'),
 		'phone' => 88888888,
 		'created_at' => Carbon::now(),
 		'updated_at' => Carbon::now(),
-		'user_role_id' => random_int(1,3)
+		'user_role_id' => 1
 		]);
 
 		// create jonas user
@@ -34,13 +34,13 @@ class UsersTableSeeder extends Seeder
 			'name' => 'Jonas bauch',
 			'email' => 'jonas@jonas.dk',
 			'active' => 1,
-			'company_id' => random_int(1,3),
-			'department_id' => random_int(1,3),
+			'company_id' => 1,
+			'department_id' => 1,
 			'password' => Hash::make('password'),
 			'phone' => 88888888,
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now(),
-			'user_role_id' => random_int(1,3)
+			'user_role_id' => 1
 		]);
 
 		// create anders user
@@ -48,8 +48,8 @@ class UsersTableSeeder extends Seeder
 			'name' => 'Anders Callesen',
 			'email' => 'anders@anders.dk',
 			'active' => 1,
-			'company_id' => random_int(1,3),
-			'department_id' => random_int(1,3),
+			'company_id' => 1,
+			'department_id' => 1,
 			'password' => Hash::make('password'),
 			'phone' => 88888888,
 			'created_at' => Carbon::now(),
@@ -61,8 +61,8 @@ class UsersTableSeeder extends Seeder
 			'name' => 'András Ács',
 			'email' => 'anac@hammernemt.dk',
 			'active' => 1,
-			'company_id' => random_int(1,3),
-			'department_id' => random_int(1,3),
+			'company_id' => 1,
+			'department_id' => 1,
 			'password' => Hash::make('anac1234'),
 			'phone' => 88888888,
 			'created_at' => Carbon::now(),
@@ -74,8 +74,8 @@ class UsersTableSeeder extends Seeder
 			'name' => 'Karsten Vandrup',
 			'email' => 'kava@hammernemt.dk',
 			'active' => 1,
-			'company_id' => random_int(1,3),
-			'department_id' => random_int(1,3),
+			'company_id' => 1,
+			'department_id' => 1,
 			'password' => Hash::make('kava1234'),
 			'phone' => 88888888,
 			'created_at' => Carbon::now(),
@@ -87,8 +87,8 @@ class UsersTableSeeder extends Seeder
 			'name' => 'Censor Censorsen',
 			'email' => 'censor@hammernemt.dk',
 			'active' => 1,
-			'company_id' => random_int(1,3),
-			'department_id' => random_int(1,3),
+			'company_id' => 1,
+			'department_id' => 1,
 			'password' => Hash::make('censor1234'),
 			'phone' => 88888888,
 			'created_at' => Carbon::now(),
