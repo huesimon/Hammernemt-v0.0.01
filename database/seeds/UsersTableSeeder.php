@@ -56,7 +56,45 @@ class UsersTableSeeder extends Seeder
 			'updated_at' => Carbon::now(),
 			'user_role_id' => random_int(1,3)
 		]);
-
+		// create andrás user
+		DB::table('users')->insert([
+			'name' => 'András Ács',
+			'email' => 'anac@hammernemt.dk',
+			'active' => 1,
+			'company_id' => random_int(1,3),
+			'department_id' => random_int(1,3),
+			'password' => Hash::make('anac1234'),
+			'phone' => 88888888,
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now(),
+			'user_role_id' => random_int(1,3)
+		]);
+		// create karsten user
+		DB::table('users')->insert([
+			'name' => 'Karsten Vandrup',
+			'email' => 'kava@hammernemt.dk',
+			'active' => 1,
+			'company_id' => random_int(1,3),
+			'department_id' => random_int(1,3),
+			'password' => Hash::make('kava1234'),
+			'phone' => 88888888,
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now(),
+			'user_role_id' => random_int(1,3)
+		]);
+		// create censor user
+		DB::table('users')->insert([
+			'name' => 'Censor Censorsen',
+			'email' => 'censor@hammernemt.dk',
+			'active' => 1,
+			'company_id' => random_int(1,3),
+			'department_id' => random_int(1,3),
+			'password' => Hash::make('censor1234'),
+			'phone' => 88888888,
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now(),
+			'user_role_id' => random_int(1,3)
+		]);
 		for ($i=0; $i < 100; $i++) { 
 			 DB::table('users')->insert([
             'name' => $faker->name,
