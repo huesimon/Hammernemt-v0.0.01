@@ -57,6 +57,7 @@ class AdminController extends Controller
 
 	public function createShift(Request $request) {
 		// dd($request->input());		
+		$nullCounter = 0;
 		$days = [
 			'Monday' => $request->input('checkboxMonday'),
 			'Tuesday' => $request->input('checkboxTuesday'),
@@ -66,8 +67,18 @@ class AdminController extends Controller
 			'Saturday' => $request->input('checkboxSaturday'),
 			'Sunday' => $request->input('checkboxSunday'),
 		];
+		foreach ($days as $day) {
+			if(is_null($day)) {
+				$nullCounter++;
+			}
+		}
+		if($nullCounter == 7){
+			$startDate = $request->input('inputStartDate');
+			$this->createSingleShift($startDate, $request);
+		} else {
+			$this->createShiftInterval($days, $request);
+		}
 		
-		$this->createShiftInterval($days, $request);
 		//Telegram debug
 		$telegram = new Api();
 		$telegram->sendMessage([
@@ -137,7 +148,36 @@ class AdminController extends Controller
 		]);
 		return view('admin.userstamp.approval', compact('userStamps'));
 	}
+	public function createSingleShift($startTime, $request) {
+		// TODO: Refactor these
+		$userId = $request->input('inputUserId');
+		$intervalStart = $request->input('inputStartDate');
+		$intervalEnd = $request->input('inputEndDate');
+		$shiftStartTime = $request->input('inputStartTime') . ':00';
+		$shiftEndTime = $request->input('inputEndTime') . ':00';
+		if (is_null($userId)) {
+					
+			$shift = new Shift;
+			$shift->user_id = null;
+			$shift->tradeable = 1;
+			$shift->date = $startTime;
+			$shift->start_time = $startTime;
+			$shift->end_time = $startTime;
+			$shift->save();
 
+			$shiftTrade = new ShiftTrade;
+			$shiftTrade->shift_id = $shift->id;
+			$shiftTrade->save();
+		}else {
+			
+			$shift = new Shift;
+			$shift->user_id = $userId;
+			$shift->date = $startTime;
+			$shift->start_time = $startTime;
+			$shift->end_time = $startTime;
+			$shift->save();
+		}
+	}
 	public function approveUserStamp($userStampId){
 		$userStamp = UserStamp::find($userStampId);
 		//Set the userStamp to approved
