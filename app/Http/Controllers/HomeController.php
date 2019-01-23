@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ShiftTrade;
 use App\UserStamp;
+use App\User;
 use Telegram\Bot\Api;
+use Illuminate\Support\Facades\DB;
+use App\Company;
+use App\CompanyDepartment;
 
 class HomeController extends Controller
 {
@@ -38,6 +42,9 @@ class HomeController extends Controller
 			'chat_id' => '-386115157',
 			'text' => '' . \Auth::user()->getName() . ' ser på dashboard '
 		]);
-        return view('user.dashboard', compact('tradeableShifts', 'shiftNeedApproval', 'stampsNeedApproval'));
+		$user = \Auth::user();
+		$deparment = CompanyDepartment::find($user->department_id);
+		$company = Company::find($user->company_id);
+		return view('user.dashboard', compact('tradeableShifts', 'shiftNeedApproval', 'stampsNeedApproval', 'company', 'deparment'));
     }
 }
