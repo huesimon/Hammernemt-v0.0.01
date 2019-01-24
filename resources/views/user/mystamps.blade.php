@@ -49,35 +49,25 @@
                                     </tr>
                                 </table>
                             </div>
-                                  {{--  <tr>
-                                    <td class="tg-iwtr" rowspan="2">06/08/2017</td>
-                                    <td class="tg-3we0">15:00 – 16:30</td>
-                                    <td class="tg-3we0">data</td>
-                                    <td class="tg-3we0">data</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="tg-yzt1">16:30 – 18:00</td>
-                                    <td class="tg-yzt1">data</td>
-                                    <td class="tg-yzt1">data</td>
-                                  </tr>  --}}
-                                  
-                                <div class="card-body">
-                                    <select>
-                                        <option disabled selected>Vælg måned</option>
-                                        <option value="1">Januar</option>
-                                        <option value="2">Febuar</option>
-                                        <option value="3">Marts</option>
-                                        <option value="4">April</option>
-                                        <option value="5">Maj</option>
-                                        <option value="6">Juni</option>
-                                        <option value="7">Juli</option>
-                                        <option value="8">August</option>
-                                        <option value="9">September</option>
-                                        <option value="10">Oktober</option>
-                                        <option value="11">November</option>
-                                        <option value="12">December</option>
-                                    </select>
-                                </div>
+                                <form method="POST" action="{{route('myStampsPost')}}">
+                                        @csrf
+                                        <input type="hidden" name="userId" value="{{Auth::user()->id}}">
+                                        Jeg vil se: <select name="month" id="month">
+                                            <option value="month" selected disabled>Vælg måned</option>
+                                            <option value="1">Januar</option>
+                                            <option value="2">Febuar</option>
+                                            <option value="3">Marts</option>
+                                            <option value="4">April</option>
+                                            <option value="5">Maj</option>
+                                            <option value="6">Juni</option>
+                                            <option value="7">Juli</option>
+                                            <option value="8">August</option>
+                                            <option value="9">September</option>
+                                            <option value="10">Oktober</option>
+                                            <option value="11">November</option>
+                                            <option value="12">December</option>
+                                        </select> måned
+                                        <button class="button btn btn-primary" type="submit">Vælg denne måned</button>
                             </div>				
 						</div>
 					</div>					

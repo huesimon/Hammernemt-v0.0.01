@@ -90,9 +90,25 @@ class UserStampController extends Controller
        if($startDiffInMin <= 10 && $endDiffInMin <= 10){
             $result = true;
             $stamp->status = 'approved';
-           // $stamp->save();
         }
         return $result;
+    }
+
+    public function selectMonth($id,$month){
+
+        $myStamps = UserStamp::myStamps($id)->byMonth($month)->byYear()->get();
+        if($myStamps->count() == 0){
+            return redirect()->route('home');
+        }
+        return view('user.mystamps',compact('myStamps', 'month'));
+    }
+
+    public function selectMonthPost(Request $request){
+        $userId = $request->input('userId');
+        $month = $request->input('month');
+        $myStamps = UserStamp::myStamps($userId)->byMonth($month)->byYear()->get();
+
+        return redirect()->route('myStamps', ['id' => $userId, 'month' => $month]);
     }
 
     /**
